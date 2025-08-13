@@ -1,0 +1,13 @@
+<ion-list>
+  <ion-item *ngFor="let acc of accounts" button (click)="onSelect(acc)">
+    <ion-avatar slot="start">
+      <img [src]="acc.bankLogoUrl" alt="{{ acc.bankName }}" />
+    </ion-avatar>
+    <ion-label>
+      <h3>{{ acc.bankName }}</h3>
+      <p>•••• {{ acc.last4 }}</p>
+    </ion-label>
+  </ion-item>
+</ion-list>
+
+<ion-button expand="block" fill="clear" (click)="onCancel()">Cancel</ion-button>

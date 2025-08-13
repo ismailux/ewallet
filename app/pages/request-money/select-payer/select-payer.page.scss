@@ -1,0 +1,86 @@
+.custom-header {
+  color: var(--ion-color-dark);
+  padding-bottom: 16px;
+  
+}
+
+// On rend la barre d'outils à l'intérieur transparente
+.custom-header ion-toolbar {
+  --background: transparent;
+  --color: var(--ion-color-dark);
+}
+
+// Style du titre et des boutons
+.custom-header ion-title {
+  text-align: center;
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+
+.custom-header ion-button, .custom-header ion-back-button {
+  --color: var(--ion-color-dark);
+  font-size: 24px;
+}
+
+
+.main-content {
+  padding: 0 16px;
+}
+
+ion-searchbar {
+  --background: #e0e1e3;
+  --border-radius: 12px;
+  --box-shadow: none;
+  padding: 16px 0;
+  --color: #000000; 
+  --placeholder-color: #6c6c6c; 
+  --icon-color: #6c6c6c; 
+}
+
+.filter-chips {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+
+  ion-chip {
+    --background: #f0eef2;
+    --color: var(--ion-color-medium);
+    font-weight: 500;
+    border-radius: 12px;
+  }
+
+  ion-chip.active {
+    --background: var(--ion-color-primary);
+    --color: white;
+  }
+}
+
+.recipient-list {
+  background: transparent;
+  padding: 0;
+
+  ion-item {
+    --padding-start: 0;
+    --inner-padding-end: 0;
+    --background: transparent;
+    margin-bottom: 12px;
+
+    ion-avatar {
+      width: 48px;
+      height: 48px;
+    }
+
+    ion-label {
+      margin-left: 12px;
+      h2 {
+        font-weight: 600;
+        font-size: 1rem;
+        color: #000000;
+      }
+      p {
+        font-size: 0.8rem;
+        color: var(--ion-color-medium);
+      }
+    }
+  }
+}

@@ -1,0 +1,262 @@
+<ion-content [fullscreen]="true" class="ion-no-padding">
+
+  <div class="header-background">
+    <div class="header-content">
+      <div class="welcome-section">
+        <ion-avatar>
+          <img alt="User avatar" src="assets/images/avatar.jpeg" />
+        </ion-avatar>
+        <div class="welcome-text">
+          <p class="greeting">Hello M. Karim,</p>
+          <p class="message">Last logged-in at 29/06/2025 18:45</p>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <div class="notification-wrapper">
+          <ion-icon name="notifications-outline" src="assets/icons/bell.svg"></ion-icon>
+          <div class="notification-dot"></div>
+        </div>
+        <!--<ion-icon class="menu-icon" name="menu-outline" src="assets/icons/menu.svg"></ion-icon>-->
+        <ion-icon name="ellipsis-vertical"></ion-icon>
+      </div>
+    </div>
+
+
+
+    <div class="balance-section">
+      <p class="balance-title">My Balance</p>
+
+      <div class="amount-line">
+        <h1 *ngIf="isBalanceVisible; else hiddenBalance" class="balance-amount">21 350.54 €</h1>
+        <ng-template #hiddenBalance>
+          <h1 class="balance-amount">*******</h1>
+        </ng-template>
+
+        <ion-icon class="visibility-icon"
+          [src]="isBalanceVisible ? 'assets/icons/eye-off.svg' : 'assets/icons/eye-on.svg'"
+          (click)="toggleBalanceVisibility()">
+        </ion-icon>
+      </div>
+    </div>
+  </div>
+
+  <div class="main-content-panel">
+
+    <div class="actions-card">
+      <ion-grid>
+        <ion-row>
+          <ion-col class="action-col">
+            <ion-icon src="assets/icons/wallet.svg" (click)="goToTopUpPage()"></ion-icon>
+            <ion-label>Top Up</ion-label>
+          </ion-col>
+          <ion-col class="action-col">
+            <ion-icon src="assets/icons/arrow-up-circle.svg" (click)="goToTransferPage()"></ion-icon>
+            <ion-label>Send</ion-label>
+          </ion-col>
+          <ion-col class="action-col">
+            <ion-icon src="assets/icons/arrow-down-circle.svg" (click)="goToRequestMoneyPage()"></ion-icon>
+            <ion-label>Request</ion-label>
+          </ion-col>
+          <ion-col class="action-col">
+            <ion-icon src="assets/icons/history.svg" (click)="goTransactionsPage()"></ion-icon>
+            <ion-label>History</ion-label>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+
+    <div class="payment-section">
+      <h2 class="section-title">Payment List</h2>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="3">
+            <div class="payment-item">
+              <ion-icon src="assets/icons/wifi.svg"></ion-icon>
+              <ion-label>Internet</ion-label>
+            </div>
+          </ion-col>
+          <ion-col size="3">
+            <div class="payment-item">
+              <ion-icon src="assets/icons/bolt.svg"></ion-icon>
+              <ion-label>Electricity</ion-label>
+            </div>
+          </ion-col>
+          <ion-col size="3">
+            <div class="payment-item">
+              <ion-icon src="assets/icons/ticket.svg"></ion-icon>
+              <ion-label>Voucher</ion-label>
+            </div>
+          </ion-col>
+          <ion-col size="3">
+            <div class="payment-item">
+              <ion-icon src="assets/icons/shield-check.svg"></ion-icon>
+              <ion-label>Assurance</ion-label>
+            </div>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="3">
+            <div class="payment-item">
+              <ion-icon src="assets/icons/mycard.svg"></ion-icon>
+              <ion-label>My Card</ion-label>
+            </div>
+          </ion-col>
+          <ion-col size="3">
+            <div class="payment-item">
+              <ion-icon src="assets/icons/receipt.svg" (click)="goBillsPage()"></ion-icon>
+              <ion-label>Bill</ion-label>
+            </div>
+          </ion-col>
+          <ion-col size="3">
+            <div class="payment-item">
+              <ion-icon src="assets/icons/storefront.svg"></ion-icon>
+              <ion-label>Merchant</ion-label>
+            </div>
+          </ion-col>
+          <ion-col size="3">
+            <div class="payment-item">
+              <ion-icon src="assets/icons/grid.svg"></ion-icon>
+              <ion-label>More</ion-label>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div> <!-- /payment-section -->
+
+    <!-- Bills Insights -->
+<div class="bills-insights ion-padding-horizontal">
+  <div class="section-header">
+        <h2 class="section-title">Bills Insights</h2>
+        <a href="#" class="see-more">See more</a>
+      </div>
+
+<div class="alert-wrap">
+  <ion-card class="alert-card">
+    <div class="alert-line">
+      Coming this week:
+      <span class="highlight">Redal – Electricity Bill.</span>
+    </div>
+    <div class="alert-line missed">
+      Missed to pay:
+      <span class="highlight">Maroc Telecom – Internet Bill.</span>
+    </div>
+  </ion-card>
+</div>
+
+  <ion-grid class="insights-grid" >
+
+    <ion-row>
+      <!-- Next Pay -->
+      <ion-col size="6">
+        <ion-card class="insight-card blue">
+          <ion-card-header>
+            <ion-card-subtitle>Next Pay</ion-card-subtitle>
+            <ion-card-title>
+              <span *ngIf="nextPayDays !== undefined; else noNext">
+                {{ nextPayDays }} Days
+              </span>
+              <ng-template #noNext>—</ng-template>
+            </ion-card-title>
+          </ion-card-header>
+          <ion-card-content *ngIf="nextPayDate" class="muted">
+            {{ nextPayDate | date:'d MMM' }}
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+
+      <!-- Remaining -->
+      <ion-col size="6">
+        <ion-card class="insight-card green">
+          <ion-card-header>
+            <ion-card-subtitle>Remaining</ion-card-subtitle>
+            <ion-card-title class="danger">
+              {{ remaining | number:'1.2-2' }} €
+            </ion-card-title>
+          </ion-card-header>
+          <ion-card-content class="muted" *ngIf="insights">
+            of {{ remainingOfMonth | number:'1.2-2' }} €
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <!-- Bills this month -->
+      <ion-col size="6">
+        <ion-card class="insight-card purple">
+          <ion-card-header>
+            <ion-card-subtitle>Bills</ion-card-subtitle>
+            <ion-card-title>
+              {{ billsCount }}
+            </ion-card-title>
+          </ion-card-header>
+          <ion-card-content class="muted" *ngIf="insights">
+            of {{ totalAccounts }} accounts
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+
+      <!-- Share of balance -->
+      <ion-col size="6">
+        <ion-card class="insight-card red">
+          <ion-card-header>
+            <ion-card-subtitle>Your bills represent</ion-card-subtitle>
+            <ion-card-title class="success">
+              {{ shareOfBalancePercent | number:'1.0-0' }}%
+            </ion-card-title>
+          </ion-card-header>
+          <ion-card-content class="muted">of your balance</ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+</div>
+
+
+
+    <div class="promo-section">
+      <div class="section-header">
+        <h2 class="section-title">Promo & Discount</h2>
+        <a href="#" class="see-more">See more</a>
+      </div>
+
+      <div class="promo-list">
+        <div class="promo-card">
+          <h3>Special Offer For Today's Top Up</h3>
+          <p>Get discount for every top up, transfer and payment.</p>
+        </div>
+
+        <div class="promo-card second-card">
+          <h3>Summer Sale is ON</h3>
+          <p>Get 20% cashback on all merchant payments.</p>
+        </div>
+      </div>
+    </div> <!-- /promo-section -->
+
+    <div class="transactions-section">
+      <div class="section-header">
+        <h2 class="section-title">Recent Transactions</h2>
+        <a href="/tabs/transactions/" class="see-more">See all</a>
+      </div>
+      <div class="transaction-list">
+
+        <div *ngFor="let tx of transactions" class="transaction-item">
+          <div class="transaction-logo">
+            <ion-icon [src]="getIconForCategory(tx.category)"></ion-icon>
+          </div>
+
+          <div class="transaction-details">
+            <p class="transaction-name">{{ tx.name }}</p>
+            <p class="transaction-date">{{ tx.date }}</p>
+          </div>
+
+          <div class="transaction-amount" [ngClass]="{ 'positive': tx.amount > 0, 'negative': tx.amount < 0 }">
+            {{ tx.amount > 0 ? '+' : '-' }} {{ math.abs(tx.amount) | number:'1.2-2' }} €
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

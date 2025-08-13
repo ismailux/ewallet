@@ -1,0 +1,24 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-title>Select Currency</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="cancel()">
+        <ion-icon slot="icon-only" name="close-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-searchbar placeholder="Search currency"></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list lines="none">
+    <ion-item *ngFor="let c of currencies" (click)="selectCurrency(c)" button>
+      <img [src]="c.flag" class="currency-flag" alt="Flag"/>
+      <ion-label>
+        <span class="currency-name">{{ c.name }}</span>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

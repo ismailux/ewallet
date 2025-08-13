@@ -1,0 +1,11 @@
+<ion-list>
+  <ion-item *ngFor="let card of cards" button (click)="onSelect(card)">
+    <ion-icon slot="start" [icon]="cardOutline"></ion-icon>
+    <ion-label>
+      <h3>{{ card.brand }} •••• {{ card.last4 }}</h3>
+      <p>Exp: {{ card.expiryMonth }}/{{ card.expiryYear }}</p>
+    </ion-label>
+  </ion-item>
+</ion-list>
+
+<ion-button expand="block" fill="clear" (click)="onCancel()">Cancel</ion-button>

@@ -1,0 +1,355 @@
+<ion-header class="ion-no-border custom-header">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Transfer Funds</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <mat-vertical-stepper linear #stepper>
+
+    <!-- Step 1: Select Mode -->
+    <mat-step [stepControl]="step0" label="Select Method">
+      <form [formGroup]="step0">
+        <ion-grid>
+          <ion-row>
+            <ion-col size="4" *ngFor="let m of modes">
+              <ion-card
+                class="mode-card"
+                [class.selected]="step0.get('mode')?.value === m.value"
+                (click)="step0.get('mode')!.setValue(m.value)"
+              >
+                <ion-icon [icon]="m.icon" size="large"></ion-icon>
+                <div class="mode-label">{{ m.label }}</div>
+              </ion-card>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <div class="stepper-buttons">
+          <button
+            mat-flat-button
+            color="primary"
+            (click)="stepper.next()"
+            [disabled]="step0.invalid"
+          >
+            Next
+          </button>
+        </div>
+      </form>
+    </mat-step>
+
+    <!-- Step 2: Enter Amount & Currency -->
+    <mat-step [stepControl]="step1" label="Enter Amount">
+      <form [formGroup]="step1">
+        <ion-item lines="none">
+          <ion-label position="floating">Amount</ion-label>
+          <ion-input
+            formControlName="amount"
+            type="number"
+            placeholder="0.00"
+          ></ion-input>
+        </ion-item>
+        <ion-item lines="none">
+          <ion-label>Currency</ion-label>
+          <div class="currency-selector-chip" (click)="openCurrencyModal()">
+            <img
+              [src]="selectedCurrency.flag"
+              class="currency-flag"
+              alt="Flag"
+            />
+            <span class="currency-name">
+              {{ selectedCurrency.code }}
+            </span>
+            <ion-icon name="chevron-down-outline"></ion-icon>
+          </div>
+        </ion-item>
+
+        <div class="stepper-buttons">
+          <button mat-button (click)="stepper.previous()">Back</button>
+          <button
+            mat-flat-button
+            color="primary"
+            (click)="proceedFromAmount(stepper)"
+            [disabled]="step1.invalid"
+          >
+            Next
+          </button>
+        </div>
+      </form>
+    </mat-step>
+
+    <!-- ===== Mobile Money Nested Steps ===== -->
+    <!-- 3.1: Select Recipient -->
+    <mat-step
+      *ngIf="step0.get('mode')?.value === 'mobile'"
+      [stepControl]="stepMobileRecipient"
+      label="Select Recipient"
+    >
+      <form [formGroup]="stepMobileRecipient">
+        <ion-button expand="block" (click)="openSelectContact()">
+          {{ recipient?.name || 'Select Recipient' }}
+        </ion-button>
+        <ion-card *ngIf="recipient">
+          <ion-card-header>
+            <ion-card-title>Recipient</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-item lines="none">
+              <ion-avatar slot="start">
+                <img [src]="recipient.avatar" [alt]="recipient.name" />
+              </ion-avatar>
+              <ion-label>
+                <h2>{{ recipient.name }}</h2>
+                <p>{{ recipient.info }}</p>
+              </ion-label>
+            </ion-item>
+          </ion-card-content>
+        </ion-card>
+        <div class="stepper-buttons">
+          <button mat-button matStepperPrevious>Back</button>
+          <button
+            mat-flat-button
+            color="primary"
+            (click)="validateStep(stepMobileRecipient)"
+            matStepperNext
+          >
+            Next
+          </button>
+        </div>
+      </form>
+    </mat-step>
+
+    <!-- 3.2: Category -->
+    <mat-step
+      *ngIf="step0.get('mode')?.value === 'mobile'"
+      [stepControl]="step2"
+      label="Select Category"
+    >
+      <form [formGroup]="step2">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Category</mat-label>
+          <mat-select formControlName="category">
+            <mat-option value="Refund">Refund</mat-option>
+            <mat-option value="Rent">Rent</mat-option>
+            <mat-option value="Gift">Gift</mat-option>
+            <!-- etc. -->
+          </mat-select>
+        </mat-form-field>
+        <div class="stepper-buttons">
+          <button mat-button matStepperPrevious>Back</button>
+          <button
+            mat-flat-button
+            color="primary"
+            (click)="validateStep(step2)"
+            matStepperNext
+          >
+            Next
+          </button>
+        </div>
+      </form>
+    </mat-step>
+
+    <!-- 3.3: Note -->
+    <mat-step
+      *ngIf="step0.get('mode')?.value === 'mobile'"
+      [stepControl]="step3"
+      label="Add Note"
+    >
+      <form [formGroup]="step3">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Note (Optional)</mat-label>
+          <textarea matInput formControlName="note"></textarea>
+        </mat-form-field>
+        <mat-hint align="end">
+          {{ step3.get('note')?.value?.length || 0 }} / 150
+        </mat-hint>
+        <div class="stepper-buttons">
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-flat-button color="primary" matStepperNext>
+            Next
+          </button>
+        </div>
+      </form>
+    </mat-step>
+
+    <!-- 3.4: Schedule & Send -->
+    <mat-step
+      *ngIf="step0.get('mode')?.value === 'mobile'"
+      [stepControl]="step4"
+      label="Schedule"
+    >
+      <form [formGroup]="step4">
+        <ion-radio-group formControlName="scheduleType" class="schedule-options">
+          <div class="radio-option">
+            <ion-label>Now</ion-label>
+            <ion-radio value="now"></ion-radio>
+          </div>
+          <div class="radio-option">
+            <ion-label>Select date</ion-label>
+            <ion-radio value="date"></ion-radio>
+          </div>
+        </ion-radio-group>
+
+        <div
+          *ngIf="step4.get('scheduleType')?.value === 'date'"
+          class="date-picker-wrapper"
+        >
+          <ion-datetime-button datetime="schedulePicker"></ion-datetime-button>
+          <ion-modal keepContentsMounted="true">
+            <ng-template>
+              <ion-datetime
+                id="schedulePicker"
+                formControlName="scheduleDate"
+                presentation="date"
+                [showDefaultButtons]="true"
+                [min]="today"
+              ></ion-datetime>
+            </ng-template>
+          </ion-modal>
+        </div>
+
+        <div class="stepper-buttons">
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-flat-button color="primary" (click)="sendMobile()">
+            Send
+          </button>
+        </div>
+      </form>
+    </mat-step>
+
+    <!-- ===== Cash Pickup Nested Steps ===== -->
+    <!-- 3.1: Confirm Amount -->
+    <mat-step
+      *ngIf="step0.get('mode')?.value === 'cash'"
+      [stepControl]="stepCashConfirmAmount"
+      label="Confirm Amount"
+    >
+      <form [formGroup]="stepCashConfirmAmount">
+        <ion-item lines="none">
+          <ion-label>
+            You are sending {{ step1.value.amount }} {{ step1.value.currency }}
+          </ion-label>
+          <ion-checkbox formControlName="confirm"></ion-checkbox>
+        </ion-item>
+        <div class="stepper-buttons">
+          <button mat-button matStepperPrevious>Back</button>
+          <button
+            mat-flat-button
+            color="primary"
+            (click)="validateStep(stepCashConfirmAmount)"
+            matStepperNext
+          >
+            Next
+          </button>
+        </div>
+      </form>
+    </mat-step>
+
+    <!-- 3.2: Pickup Location -->
+    <mat-step
+      *ngIf="step0.get('mode')?.value === 'cash'"
+      [stepControl]="stepCashLocation"
+      label="Pickup Location"
+    >
+      <form [formGroup]="stepCashLocation">
+        <ion-item>
+          <ion-label>Location</ion-label>
+          <ion-select formControlName="pickupLocation">
+            <ion-select-option value="CashPlus">CashPlus</ion-select-option>
+            <ion-select-option value="WesternUnion">
+              WesternUnion
+            </ion-select-option>
+            <ion-select-option value="Wafacash">Wafacash</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <div class="stepper-buttons">
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-flat-button color="primary" matStepperNext>
+            Next
+          </button>
+        </div>
+      </form>
+    </mat-step>
+
+    <!-- 3.3: Contact Info -->
+    <mat-step
+      *ngIf="step0.get('mode')?.value === 'cash'"
+      [stepControl]="stepCashContact"
+      label="Add Contact Info"
+    >
+      <form [formGroup]="stepCashContact">
+        <ion-item>
+          <ion-label position="floating">First Name</ion-label>
+          <ion-input formControlName="firstName"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Last Name</ion-label>
+          <ion-input formControlName="lastName"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">ID Number</ion-label>
+          <ion-input formControlName="idNumber"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">City</ion-label>
+          <ion-input formControlName="city"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Phone</ion-label>
+          <ion-input formControlName="phone" type="tel"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Email (Opt.)</ion-label>
+          <ion-input formControlName="email" type="email"></ion-input>
+        </ion-item>
+        <div class="stepper-buttons">
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-flat-button color="primary" matStepperNext>
+            Next
+          </button>
+        </div>
+      </form>
+    </mat-step>
+
+    <!-- 3.4: Payment Method & Send -->
+    <mat-step
+      *ngIf="step0.get('mode')?.value === 'cash'"
+      [stepControl]="stepCashPayment"
+      label="Choose Payment"
+    >
+      <form [formGroup]="stepCashPayment">
+        <ion-radio-group formControlName="paymentMethod" class="schedule-options">
+          <ion-item value="ewallet">
+            <ion-label>eWallet</ion-label>
+            <ion-radio slot="start"></ion-radio>
+          </ion-item>
+          <ion-item value="card">
+            <ion-label>Add New Method</ion-label>
+            <ion-radio slot="start"></ion-radio>
+          </ion-item>
+        </ion-radio-group>
+
+        <div class="stepper-buttons">
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-flat-button color="primary" (click)="sendCash()">
+            Send
+          </button>
+        </div>
+      </form>
+    </mat-step>
+
+    <!-- ===== Direct to Bank (placeholder) ===== -->
+    <mat-step
+      *ngIf="step0.get('mode')?.value === 'direct'"
+      label="Direct to Bank"
+    >
+      <p>Coming soon…</p>
+      <div class="stepper-buttons">
+        <button mat-button matStepperPrevious>Back</button>
+      </div>
+    </mat-step>
+  </mat-vertical-stepper>
+</ion-content>

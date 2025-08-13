@@ -1,0 +1,45 @@
+<ion-header class="ion-no-border custom-header">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/home"></ion-back-button>
+    </ion-buttons>
+
+    <ion-title>Transactions History</ion-title>
+    <ion-progress-bar *ngIf="showProgress" type="indeterminate"></ion-progress-bar>
+
+    <ion-buttons slot="end" aria-hidden="true"></ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+  
+
+<ion-content [fullscreen]="true">
+  <div class="main-content">
+    <div class="search-filter-container">
+      <ion-searchbar placeholder="Search..."></ion-searchbar>
+      <ion-button fill="clear" class="filter-button">
+        <ion-icon slot="icon-only" src="assets/icons/filter.svg"></ion-icon>
+      </ion-button>
+    </div>
+    <div class="transaction-list">
+      <div *ngFor="let group of groupedTransactions | keyvalue">
+
+        <h3 class="month-header">{{ group.key }}</h3>
+
+        <div *ngFor="let tx of group.value" class="transaction-item">
+          <div class="transaction-logo">
+            <ion-icon [src]="getIconForCategory(tx.category)"></ion-icon>
+          </div>
+          <div class="transaction-details">
+            <p class="transaction-name">{{ tx.name }}</p>
+            <p class="transaction-info">{{ tx.date | date:'dd MMMM' }}</p>
+          </div>
+          <div class="transaction-amount" [ngClass]="{ 'positive': tx.amount > 0, 'negative': tx.amount < 0 }">
+            {{ tx.amount > 0 ? '+' : '' }}{{ tx.amount | number:'1.2-2' }} €
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</ion-content>

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="24" height="24" viewBox="0 0 24 24"
+     fill="none" stroke="rgba(111, 18, 246, 1)" stroke-width="2"
+     stroke-linecap="round" stroke-linejoin="round">
+  <!-- Bordure carrée arrondie -->
+  <rect x="2" y="2" width="20" height="20" rx="5"/>
+
+  <!-- Ligne “tendance” parfaitement centrée -->
+  <polyline points="7,15 10,11 14,13 17,9" />
+</svg>

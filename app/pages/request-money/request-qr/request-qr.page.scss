@@ -1,0 +1,50 @@
+// --- Styles généraux ---
+ion-toolbar {
+  --background: var(--ion-background-color, #f4f5f8);
+  ion-title { font-weight: 600; color: var(--ion-color-dark); text-align: center; }
+}
+
+.main-content {
+  padding: 16px;
+  text-align: center;
+}
+
+// --- Résumé ---
+.summary {
+  margin-bottom: 24px;
+  p { color: var(--ion-color-medium); }
+  h2 { font-size: 2.5rem; font-weight: 700; color: var(--ion-color-dark); margin: 8px 0; }
+  .message-note { font-style: italic; }
+}
+
+// --- QR Code ---
+.qr-code-container {
+  background: #7A25F6;
+  border-radius: 20px;
+  padding: 24px;
+  display: inline-block; // Pour que la div s'adapte à la taille du QR code
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+
+// --- Boutons d'action ---
+.action-buttons {
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+
+  .action-btn {
+    --color: var(--ion-color-primary);
+    font-weight: 600;
+  }
+  
+  .link-button {
+    --color: var(--ion-color-primary);
+    --border-color: var(--ion-color-primary);
+    --border-radius: 6px;
+    margin-top: 16px;
+    width: 100%;
+  }
+}

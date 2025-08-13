@@ -1,0 +1,42 @@
+<ion-header class="ion-no-border custom-header">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Select Transfer Mode</ion-title>
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon slot="icon-only" name="close-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content class="ion-padding">
+  <div class="progress-wrapper">
+    <ion-progress-bar value=".25" buffer="1" color="primary" type="determinate"></ion-progress-bar>
+    <p class="step-text">Step 1 of 4</p>
+  </div>
+  <ion-grid class="mode-container">
+    <ion-row *ngFor="let m of modes" class="ion-justify-content-center">
+      <ion-col size="12" size-md="4">
+        <ion-card button [class.selected]="mode === m.value" class="mode-card {{ m.bgClass }}"
+          (click)="onModeChange(m.value); proceed()">
+          <!-- Structured header -->
+          <ion-card-header>
+            <ion-card-title>{{ m.label }}</ion-card-title>
+            <ion-card-subtitle>{{ m.description }}</ion-card-subtitle>
+          </ion-card-header>
+
+          <!-- Optional graphic in the content area -->
+          <ion-card-content class="mode-graphic">
+
+            <img [src]="'/assets/images/mode-transfer/' + m.value + '.png'" [alt]="m.label + ' illustration'" />
+
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

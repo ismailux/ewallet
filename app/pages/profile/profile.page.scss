@@ -1,0 +1,139 @@
+ion-content {
+  --padding-bottom: 90px;
+}
+
+.custom-header {
+  color: var(--ion-color-dark);
+  padding-bottom: 16px;
+  
+}
+
+// On rend la barre d'outils à l'intérieur transparente
+.custom-header ion-toolbar {
+  --background: #f4f5f8;
+  --color: var(--ion-color-dark);
+}
+
+// Style du titre et des boutons
+.custom-header ion-title {
+  text-align: center;
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+
+.custom-header ion-button, .custom-header ion-back-button {
+  --color: var(--ion-color-dark);
+  font-size: 24px;
+}
+
+
+
+
+.main-content {
+  padding: 8px 24px;
+  
+}
+
+// --- Info Utilisateur ---
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+  ion-avatar {
+    width: 56px;
+    height: 56px;
+  }
+  .user-details {
+    h2 { font-size: 1.2rem; color: var(--ion-color-dark); font-weight: 600; margin: 0; }
+    p { font-size: 0.9rem; color: var(--ion-color-medium); margin: 4px 0 0 0; }
+  }
+}
+
+// --- Carte du Solde ---
+.balance-card {
+  background: linear-gradient(159deg, rgba(0,51,102,1) 0%, rgba(15,82,186,1) 100%);
+  color: white;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  .balance-section, .qr-section {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .balance-section, .qr-section {
+    flex: 1; 
+    display: flex;
+    align-items: center;
+    justify-content: center; // Centre le contenu à l'intérieur
+    gap: 12px;
+  }
+  .balance-text { display: flex; flex-direction: column; }
+  .balance-text strong { font-size: 1rem; font-weight: 700; }
+  .separator {
+    width: 1px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.3);
+    margin: 0 20px;
+  }
+  .qr-section {
+    font-weight: 500;
+  }
+  ion-icon { 
+    background: rgba(255, 255, 255, 0.15); // Fond blanc semi-transparent
+    border-radius: 8px; // Coins arrondis
+    padding: 8px; // Espace autour de l'icône
+    font-size: 24px;
+  }
+}
+
+// --- Listes de liens ---
+.link-list-card {
+  background: white;
+  border-radius: 20px;
+  padding: 16px;
+  margin-top: 24px;
+  .section-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0 0 8px 0;
+    color: var(--ion-color-dark);
+  }
+
+  ion-list {
+    padding: 0;
+    background: transparent;
+  }
+  ion-item {
+    --padding-start: 0;
+    --inner-padding-end: 0;
+    --background: transparent;
+    font-weight: 500;
+    color: var(--ion-color-medium);
+    border-bottom: 1px solid #f0f0f0;
+    &:last-of-type {
+      border-bottom: none;
+    }
+  }
+}
+
+.logout-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 16; // Garde l'espace au-dessus
+}
+
+// Le bouton lui-même n'a plus besoin que de ses styles visuels
+.logout-button {
+  --color: var(--ion-color-danger);
+  --color-activated: var(--ion-color-danger-shade);
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: none;
+
+  ion-icon {
+    margin-right: 8px;
+  }
+}

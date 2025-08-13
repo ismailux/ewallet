@@ -1,0 +1,267 @@
+ion-content {
+  --padding-bottom: 90px;
+}
+
+.ion-col-items{
+  padding-left: 24px;
+}
+
+.custom-header {
+  color: var(--ion-color-dark);
+  padding-bottom: 16px;
+  
+}
+
+// On rend la barre d'outils à l'intérieur transparente
+.custom-header ion-toolbar {
+  --background: transparent;
+  --color: var(--ion-color-dark);
+}
+
+// Style du titre et des boutons
+.custom-header ion-title {
+  text-align: center;
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+
+.custom-header ion-button, .custom-header ion-back-button {
+  --color: var(--ion-color-dark);
+  font-size: 24px;
+}
+
+.main-content {
+  padding: 0 16px;
+}
+
+.balance-grid {
+  padding-top: 16px;
+}
+
+.balance-title {
+  color: var(--ion-color-medium); 
+  margin: 0;
+}
+.balance-amount {
+  color: var(--ion-color-dark);
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin: 4px 0 0 0;
+}
+
+.history-button {
+  --color: var(--ion-color-dark);
+  --padding-start: 8px;
+  --padding-end: 8px;
+  ion-icon {
+    font-size: 32px;
+  }
+}
+
+.overview-section {
+  padding-top: 32px;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .section-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--ion-color-dark);
+    margin: 0;
+  }
+}
+
+.month-selector {
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  ion-select {
+    --padding-start: 12px;
+    --padding-end: 12px;
+    font-size: 0.9rem;
+    color: var(--ion-color-dark);
+  }
+}
+
+.chart-container {
+  height: 250px;
+  margin-top: 24px;
+  width: 100%;
+}
+
+.summary-cards {
+  display: flex;
+  gap: 16px;
+  margin-top: 24px;
+}
+.summary-card {
+  flex: 1; border-radius: 20px; padding: 16px;
+  display: flex; align-items: center; gap: 12px;
+  color: white;
+  .card-icon {
+    border-radius: 50%; width: 44px; height: 44px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px;
+  }
+  .card-title { margin: 0; font-size: 0.9rem; opacity: 0.8; }
+  .card-amount { margin: 4px 0 0 0; font-size: 1.1rem; font-weight: 600; }
+}
+.income-card {
+  background: #070011;
+  .card-icon { background: rgba(255, 255, 255, 0.1); }
+}
+.expense-card {
+  background: var(--ion-color-primary);
+  .card-icon { background: rgba(255, 255, 255, 0.2); }
+}
+
+.category-spending-section {
+  background-color: white;
+  border-radius: 20px;
+  padding: 20px 16px;
+  margin-top: 24px;
+
+  .section-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--ion-color-dark);
+    margin: 0;
+    margin-bottom: 24px; 
+  }
+}
+
+.spending-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.spending-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.item-icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36px;
+}
+
+.item-details {
+  flex-grow: 1;
+  .category-name {
+    font-weight: 500;
+    color: var(--ion-color-dark);
+  }
+}
+
+.progress-bar-background {
+  max-width: 190px; 
+  height: 6px;
+  background-color: #eef0f2;
+  border-radius: 3px;
+  margin-top: 8px;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background-color: var(--ion-color-primary);
+  border-radius: 3px;
+}
+
+.item-amount {
+  font-weight: 600;
+  color: var(--ion-color-dark);
+  font-size: 0.9rem;
+}
+
+.content-card {
+  background-color: white;
+  border-radius: 20px;
+  padding: 20px 16px;
+  margin-top: 24px;
+  .section-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--ion-color-dark);
+    margin: 0;
+  }
+}
+
+
+.chart-legend-wrapper {
+  igx-item-legend {
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: flex-start; 
+    gap: 16px;
+  }
+}
+
+.doughnut-chart-container {
+  position: relative;
+  height: 220px;
+  width: 220px;
+  margin: 24px auto;
+}
+.chart-center-text {
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center; pointer-events: none;
+  .center-text-label { margin: 0; font-size: 0.7rem; color: var(--ion-color-medium); }
+  .center-text-value { margin: 4px 0 0 0; font-size: 1.2rem; font-weight: 700; color: var(--ion-color-dark); }
+  .center-text-sublabel { margin: 4px 0 0 0; font-size: 0.8rem; color: var(--ion-color-medium);}
+}
+
+.list-container {
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.category-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.item-icon-wrapper {
+  width: 44px; height: 44px; border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 36px; flex-shrink: 0;
+}
+.item-details {
+  flex-grow: 1;
+  .category-name { margin: 0; font-weight: 500; }
+  .category-info { margin: 4px 0 0 0; font-size: 0.8rem; color: var(--ion-color-medium); }
+}
+.item-amount {
+  font-weight: 600;
+  color: var(--ion-color-dark);
+}
+
+
+.month-chips {
+  display: flex;
+  overflow-x: auto;
+  gap: 8px;
+  padding: 16px 0;
+  &::-webkit-scrollbar { display: none; }
+  scrollbar-width: none;
+
+  ion-chip {
+    --background: #eef0f2;
+    --color: var(--ion-color-medium);
+    font-weight: 500;
+    flex-shrink: 0; 
+  }
+
+  ion-chip.active {
+    --background: #6F12F6; 
+    --color: white;
+  }
+}

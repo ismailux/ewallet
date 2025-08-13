@@ -1,0 +1,140 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/transfer"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Send Money</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="main-content" *ngIf="recipient">
+
+    <div class="recipient-info">
+      <ion-avatar>
+        <img [src]="recipient.avatar" />
+      </ion-avatar>
+      <h2>{{ recipient.name }}</h2>
+      <p>{{ recipient.account }}</p>
+    </div>
+
+    <mat-vertical-stepper [linear]="true" #stepper>
+      <mat-step [stepControl]="step1" label="Enter Amount">
+        <form [formGroup]="step1">
+          <div class="amount-input-container">
+            <input formControlName="amount" type="number" class="amount-input-field" placeholder="0.00">
+            <div class="separator"></div>
+            <div class="currency-selector-chip" (click)="openCurrencyModal()">
+              <img [src]="selectedCurrency.flag" class="currency-flag" alt="Flag" />
+              <span class="currency-name">{{ selectedCurrency.code }}</span>
+              <ion-icon name="chevron-down-outline"></ion-icon>
+            </div>
+          </div>
+          <mat-error *ngIf="step1.get('amount')?.invalid && step1.get('amount')?.touched">
+            <span *ngIf="step1.get('amount')?.hasError('required')">Amount is required.</span>
+            <span *ngIf="step1.get('amount')?.hasError('pattern')">Please enter a valid amount.</span>
+          </mat-error>
+
+          <div class="stepper-buttons">
+            <button mat-flat-button color="primary" (click)="validateStep(step1)" matStepperNext>Next</button>
+          </div>
+        </form>
+      </mat-step>
+
+
+
+      <mat-step [stepControl]="step2" label="Select Category">
+        <form [formGroup]="step2">
+          <mat-form-field appearance="outline">
+            <mat-label>Category</mat-label>
+            <mat-select formControlName="category">
+              <mat-option *ngFor="let cat of transferCategories" [value]="cat">
+                {{ cat }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-error *ngIf="step2.get('category')?.hasError('required')">
+            Category is required.
+          </mat-error>
+
+          <div class="stepper-buttons">
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-flat-button color="primary" (click)="validateStep(step2)" matStepperNext>Next</button>
+          </div>
+        </form>
+      </mat-step>
+
+
+      <mat-step [stepControl]="step3" label="Add Note">
+        <form [formGroup]="step3">
+          <mat-form-field appearance="outline">
+            <mat-label>Note (Optional)</mat-label>
+            <textarea matInput formControlName="note"></textarea>
+          </mat-form-field>
+          <mat-hint align="end">{{ step3.get('note')?.value?.length || 0 }} / 150</mat-hint>
+          <div class="stepper-buttons">
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-flat-button color="primary" matStepperNext>Next</button>
+          </div>
+        </form>
+      </mat-step>
+
+      <mat-step [stepControl]="step4" label="Schedule">
+        <form [formGroup]="step4">
+          <ion-radio-group formControlName="scheduleType" class="schedule-options">
+            <div class="radio-option">
+              <ion-label>Now</ion-label>
+              <ion-radio value="now"></ion-radio>
+            </div>
+            <div class="radio-option">
+              <ion-label>Choose date</ion-label>
+              <ion-radio value="date"></ion-radio>
+            </div>
+          </ion-radio-group>
+
+          <div *ngIf="step4.get('scheduleType')?.value === 'date'" class="date-picker-wrapper">
+            <ion-datetime-button datetime="schedulePicker"></ion-datetime-button>
+
+            <ion-modal [keepContentsMounted]="true">
+              <ng-template>
+                <ion-datetime id="schedulePicker" formControlName="scheduleDate" presentation="date"
+                  [showDefaultButtons]="true" [min]="today"></ion-datetime>
+              </ng-template>
+            </ion-modal>
+
+          </div>
+
+          <div class="stepper-buttons">
+            <button mat-button matStepperPrevious>Back</button>
+            <!--<button mat-flat-button color="primary" matStepperNext>Next</button>-->
+            <button mat-flat-button color="primary" (click)="sendMoney()">Send</button>
+          </div>
+        </form>
+      </mat-step>
+
+      <!--
+      <mat-step label="Recap">
+        <div class="recap-section">
+          <p><strong>Amount:</strong> {{ step1.value.amount | number:'1.2-2' }} {{ step1.value.currency }}</p>
+          <p><strong>Category:</strong> {{ step2.value.category }}</p>
+          <p><strong>Note:</strong> {{ step3.value.note }}</p>
+          <p>
+      <strong>Schedule:</strong>
+      <span *ngIf="step4.value.scheduleType === 'now'">
+            {{ today | date:'dd-MM-yyyy' }}
+          </span>
+          <span *ngIf="step4.value.scheduleType === 'date'">
+            {{ step4.value.scheduleDate | date:'dd-MM-yyyy' }}
+          </span>
+        </div>
+        <div class="stepper-buttons">
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-flat-button color="primary" (click)="sendMoney()">Send</button>
+        </div>
+      </mat-step>
+    -->
+
+    </mat-vertical-stepper>
+
+  </div>
+</ion-content>

@@ -1,0 +1,44 @@
+<ion-header class="ion-no-border custom-header">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Select Recipient</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="goToAddRecipientPage()">
+        <ion-icon slot="icon-only" name="add-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="main-content">
+    <ion-searchbar placeholder="Search..."></ion-searchbar>
+
+    <div class="filter-chips">
+      <ion-chip *ngFor="let filter of filters" [class.active]="filter === activeFilter" (click)="selectFilter(filter)">
+        <ion-label>{{ filter }}</ion-label>
+      </ion-chip>
+    </div>
+
+    <ion-list class="recipient-list" lines="none">
+      <ion-item *ngFor="let recipient of recipients" (click)="goToRequestDetails(recipient)">
+        <ion-avatar slot="start">
+          <img [src]="recipient.avatar" />
+        </ion-avatar>
+        <ion-label>
+          <h2>{{ recipient.name }}</h2>
+          <p>{{ recipient.account }}</p>
+        </ion-label>
+        <ion-button fill="clear" color="medium" (click)="toggleFavourite(recipient); $event.stopPropagation();">
+          <ion-icon slot="icon-only" [name]="recipient.isFavourite ? 'heart' : 'heart-outline'"
+            [color]="recipient.isFavourite ? 'danger' : 'medium'"></ion-icon>
+        </ion-button>
+        <ion-button fill="clear" color="medium">
+          <ion-icon slot="icon-only" name="ellipsis-vertical"></ion-icon>
+        </ion-button>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>

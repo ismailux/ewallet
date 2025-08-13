@@ -1,0 +1,177 @@
+<ion-header class="ion-no-border custom-header">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/transfer/details"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Confirm Transfer</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="progress-wrapper">
+    <ion-progress-bar value=".75" buffer="1" color="primary" type="determinate"></ion-progress-bar>
+    <p class="step-text">Step 3 of 4</p>
+  </div>
+  <!-- MOBILE MONEY SUMMARY -->
+  <ng-container *ngIf="mode==='mobile' && mobileDetails">
+    <div class="main-content">
+      <!-- Account Card (unchanged) -->
+      <div class="info-card">
+        <p class="section-title">Account No.</p>
+        <div class="account-item">
+          <div class="account-icon">
+            <img src="assets/icons/wallet.png" alt="Wallet Icon" />
+          </div>
+          <div class="account-details">
+            <span class="account-name">E-Wallet</span>
+            <span class="account-balance">
+              Available Balance: 5,430.00 €
+            </span>
+          </div>
+          <a href="#" class="change-link">Change</a>
+        </div>
+      </div>
+
+      <!-- Transaction Details -->
+      <div class="info-card">
+        <p class="section-title">Transaction Details</p>
+        <ion-list class="details-list" lines="none">
+          <ion-item>
+            <ion-label>Transfer to</ion-label>
+            <span slot="end">{{ mobileDetails.recipient.name }}</span>
+          </ion-item>
+          <ion-item>
+            <ion-label>Phone number</ion-label>
+            <span slot="end">{{ mobileDetails.recipient.account }}</span>
+          </ion-item>
+          <ion-item>
+            <ion-label>Category</ion-label>
+            <span slot="end">{{ mobileDetails.category }}</span>
+          </ion-item>
+          <ion-item>
+            <ion-label>Amount</ion-label>
+            <span slot="end">
+              {{ mobileDetails.amount | number:'1.2-2' }}
+              {{ mobileDetails.currency }}
+            </span>
+          </ion-item>
+          <ion-item>
+            <ion-label>Fee</ion-label>
+            <span slot="end" class="free-text">Free</span>
+          </ion-item>
+          <ion-item>
+            <ion-label>Date &amp; time</ion-label>
+            <span *ngIf="mobileDetails.scheduleType==='now'" slot="end">
+              {{ today | date:'d MMMM y, h:mm a' }}
+            </span>
+            <span *ngIf="mobileDetails.scheduleType==='date'" slot="end">
+              {{ mobileDetails.scheduleDate | date:'d MMMM y' }}
+            </span>
+          </ion-item>
+          <hr />
+          <ion-item class="total-item">
+            <ion-label>Total Amount</ion-label>
+            <span slot="end" class="total-amount">
+              {{ mobileDetails.amount | number:'1.2-2' }}
+              {{ mobileDetails.currency }}
+            </span>
+          </ion-item>
+        </ion-list>
+      </div>
+
+      <!-- Message -->
+      <div class="info-card">
+        <p class="section-title">Message</p>
+        <p class="message-text">
+          {{ mobileDetails.note || 'No message' }}
+        </p>
+      </div>
+    </div>
+  </ng-container>
+
+  <!-- CASH PICKUP SUMMARY -->
+  <ng-container *ngIf="mode==='cash' && cashDetails">
+    <div class="main-content">
+      <!-- Payer Account (same styling) -->
+      <div class="info-card">
+        <p class="section-title">Payment Method</p>
+        <div class="account-item">
+          <div class="account-icon">
+            <img [src]="
+                cashDetails.paymentMethod === 'ewallet'
+                  ? 'assets/icons/wallet.png'
+                  : 'assets/icons/card.png'
+              " alt="Payment Icon" />
+          </div>
+          <div class="account-details">
+            <span class="account-name">
+              {{
+              cashDetails.paymentMethod === 'ewallet'
+              ? 'e-Wallet'
+              : 'Credit Card'
+              }}
+            </span>
+          </div>
+          <a href="#" class="change-link">Change</a>
+        </div>
+      </div>
+
+      <!-- Transaction Details -->
+      <div class="info-card">
+        <p class="section-title">Transaction Details</p>
+        <ion-list class="details-list" lines="none">
+          <ion-item>
+            <ion-label>Pickup Location</ion-label>
+            <span slot="end">{{ cashDetails.pickupLocation }}</span>
+          </ion-item>
+          <ion-item>
+            <ion-label>Recipient Name</ion-label>
+            <span slot="end">
+              {{ cashDetails.firstName }} {{ cashDetails.lastName }}
+            </span>
+          </ion-item>
+          <ion-item>
+            <ion-label>ID Number</ion-label>
+            <span slot="end">{{ cashDetails.idNumber }}</span>
+          </ion-item>
+          <ion-item>
+            <ion-label>City</ion-label>
+            <span slot="end">{{ cashDetails.city }}</span>
+          </ion-item>
+          <ion-item>
+            <ion-label>Phone</ion-label>
+            <span slot="end">{{ cashDetails.phone }}</span>
+          </ion-item>
+          <ion-item *ngIf="cashDetails.email">
+            <ion-label>Email</ion-label>
+            <span slot="end">{{ cashDetails.email }}</span>
+          </ion-item>
+          <ion-item>
+            <ion-label>Amount</ion-label>
+            <span slot="end">
+              {{ cashDetails.amount | number:'1.2-2' }}
+              {{ cashDetails.currency }}
+            </span>
+          </ion-item>
+          <ion-item>
+            <ion-label>Fee</ion-label>
+            <span slot="end" class="free-text">Free</span>
+          </ion-item>
+          <hr />
+          <ion-item class="total-item">
+            <ion-label>Total Amount</ion-label>
+            <span slot="end" class="total-amount">
+              {{ cashDetails.amount | number:'1.2-2' }}
+              {{ cashDetails.currency }}
+            </span>
+          </ion-item>
+        </ion-list>
+      </div>
+    </div>
+  </ng-container>
+
+  <!-- Confirm Button (shared) -->
+  <ion-button expand="block" class="confirm-button" (click)="goToConfirmPin()">
+    Confirm
+  </ion-button>
+</ion-content>

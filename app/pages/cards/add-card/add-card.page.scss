@@ -1,0 +1,242 @@
+.form-item {
+  --background: transparent !important;
+  color: var(--ion-color-dark);
+}
+
+.my-select-alert .alert-radio-label {
+  color: var(--ion-color-dark) !important; 
+}
+
+.my-select-alert .alert-button {
+  color: var(--ion-color-dark) !important;
+}
+
+.custom-header {
+  color: var(--ion-color-dark);
+  padding-bottom: 16px;
+  
+}
+
+.custom-header ion-toolbar {
+  --background: #f4f5f8;
+  --color: var(--ion-color-dark);
+}
+
+.custom-header ion-title {
+  text-align: center;
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+
+.custom-header ion-button, .custom-header ion-back-button {
+  --color: var(--ion-color-dark);
+  font-size: 24px;
+}
+
+@import url('https://fonts.googleapis.com/css?family=Space+Mono:400,400i,700,700i');
+
+/* Container for the 3D card */
+.card {
+  box-sizing: border-box;
+  font-family: 'Space Mono', monospace;
+  margin: 0 auto;
+  width: 320px;
+  height: 190px;
+  perspective: 600px;
+  position: relative;
+}
+
+/* Shared face styles */
+.card__part {
+  box-shadow: 1px 1px #aaa3a3;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 320px;
+  height: 190px;
+  border-radius: 8px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  transition: all .5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+
+/* Color variants */
+.card_orange {
+  background: linear-gradient(
+    to right bottom,
+    #fd696b,
+    #fa616e,
+    #f65871,
+    #c74261,
+    #d62158
+  );
+}
+
+.card_blue {
+  background: linear-gradient(
+    to right bottom,
+    #699dfd,
+    #61b5fa,
+    #58aff6,
+    #4b86c9,
+    #2151d6
+  );
+}
+
+.card_black {
+  background: linear-gradient(
+    to right bottom,
+    #292929,
+    #363636,
+    #555555,
+    #444444,
+    #0f0f0f
+  );
+}
+
+.card_purple {
+  background: linear-gradient(
+    to right bottom,
+    #7a43df,
+    #644897,
+    #8964cf,
+    #633cac,
+    #512c96
+  );
+}
+
+/* Front face */
+.card__front {
+  padding: 18px;
+  transform: rotateY(0);
+}
+
+/* Back face */
+.card__back {
+  padding: 18px 0;
+  transform: rotateY(-180deg);
+}
+
+/* Flip effect on hover/focus */
+.card:hover .card__front {
+  transform: rotateY(180deg);
+}
+
+.card:hover .card__back {
+  transform: rotateY(0deg);
+}
+
+/* Magnetic stripe on back */
+.card__black_line {
+  margin-top: 5px;
+  height: 38px;
+  background-color: #303030;
+}
+
+/* Logos */
+.card__logo {
+  height: 16px !important;
+}
+
+.card__front_logo {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+}
+
+.card__back_logo {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+}
+
+/* Chip on front */
+.card__front_chip {
+  position: absolute;
+  left: 1.2rem;
+  height: 1.5rem !important;
+}
+
+
+.card__front_ionicwhite {
+  position: absolute;
+  left: 10rem;
+  height: 1.5rem !important;
+}
+
+/* Number styling */
+.card_number {
+  display: block;
+  width: 100%;
+  word-spacing: 4px;
+  font-size: 20px;
+  letter-spacing: 2px;
+  color: #fff;
+  text-align: center;
+  margin: 40px 0;
+}
+
+/* Layout helpers */
+.card__space_75 {
+  width: 75%;
+  float: left;
+}
+
+.card__space_25 {
+  width: 25%;
+  float: left;
+}
+
+/* Labels and info */
+.card__label {
+  font-size: 10px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.8);
+  letter-spacing: 1px;
+}
+
+.card__info {
+  margin: 5px 0 0;
+  font-size: 16px;
+  line-height: 18px;
+  color: #fff;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* Secret/CVV styling */
+.card__secret {
+  padding: 5px 12px;
+  background-color: #fff;
+  position: relative;
+}
+
+.card__secret:before {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  height: calc(100% + 6px);
+  width: calc(100% - 42px);
+  border-radius: 4px;
+  background: repeating-linear-gradient(
+    45deg,
+    #ededed,
+    #ededed 5px,
+    #f9f9f9 5px,
+    #f9f9f9 10px
+  );
+}
+
+.card__back_content {
+  padding: 15px 15px 0;
+}
+
+.card__back_square {
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
+}

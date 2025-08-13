@@ -1,0 +1,149 @@
+<ion-content [fullscreen]="true">
+  <div class="header-container">
+    <ion-buttons slot="start" aria-hidden="true">
+      <ion-button>
+        <ion-icon slot="icon-only" name=""></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <h1>Receipt</h1>
+
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon slot="icon-only" src="assets/icons/share-outline.svg"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </div>
+
+  <div class="main-content">
+    <!-- Progress Indicator -->
+    <div class="receipt-card">
+      <div class="success-icon" [@popIn]>
+        <ion-icon src="assets/icons/success-checkmark.svg"></ion-icon>
+      </div>
+
+      <h2>Transfer Successful!</h2>
+      <p class="subtitle">Your money has been transferred successfully!</p>
+
+      <div class="details-container" *ngIf="mode === 'mobile' && mobileDetails">
+        <div class="detail-row">
+          <span>No. Ref</span>
+          <strong>121112224455</strong>
+        </div>
+
+        <div class="detail-row">
+          <span>Transfer Amount</span>
+          <strong>{{ totalAmount | number:'1.2-2' }} {{ mobileDetails.currency }}</strong>
+        </div>
+
+        <div class="detail-row">
+          <span>Recipient</span>
+          <strong>{{ mobileDetails.recipient.name }}</strong>
+        </div>
+
+
+        <ion-accordion-group expand="inset">
+          <ion-accordion value="details">
+            <ion-item slot="header">
+              <ion-label>See Detail</ion-label>
+            </ion-item>
+            <div class="ion-padding" slot="content">
+              <div class="detail-row">
+                <span>Category</span>
+                <strong>{{ mobileDetails.category }}</strong>
+              </div>
+
+              <div class="detail-row">
+                <span>Date & Time</span>
+                <strong *ngIf="mobileDetails.scheduleType === 'now'">
+                  {{ today | date:'d MMMM y, h:mm a' }}
+                </strong>
+                <strong *ngIf="mobileDetails.scheduleType === 'date'">
+                  {{ mobileDetails.scheduleDate | date:'d MMMM y' }}
+                </strong>
+              </div>
+
+              <div class="detail-row">
+                <span>Message</span>
+                <strong>{{ mobileDetails.note }}</strong>
+              </div>
+
+              <div class="detail-row">
+                <span>Amount</span>
+                <strong>{{ totalAmount | number:'1.2-2' }} {{ mobileDetails.currency }}</strong>
+              </div>
+
+              <div class="detail-row">
+                <span>Fee</span>
+                <strong>Free</strong>
+              </div>
+
+              <div class="detail-row">
+                <span>Total Amount</span>
+                <strong>{{ totalAmount | number:'1.2-2' }} {{ mobileDetails.currency }}</strong>
+              </div>
+            </div>
+          </ion-accordion>
+        </ion-accordion-group>
+      </div>
+
+      <div class="details-container" *ngIf="mode === 'cash' && cashDetails">
+        <div class="detail-row">
+          <span>No. Ref</span>
+          <strong>121112224455</strong>
+        </div>
+
+        <div class="detail-row">
+          <span>Transfer Amount</span>
+          <strong>{{ totalAmount | number:'1.2-2' }} {{ cashDetails.currency }}</strong>
+        </div>
+
+        <div class="detail-row">
+          <span>Recipient</span>
+          <strong>{{ cashDetails.firstName }} {{ cashDetails.lastName }}</strong>
+        </div>
+
+        <ion-accordion-group expand="inset">
+          <ion-accordion value="details">
+            <ion-item slot="header">
+              <ion-label>See Detail</ion-label>
+            </ion-item>
+            <div class="ion-padding" slot="content">
+              <div class="detail-row">
+                <span>Date & Time</span>
+                <strong>{{ today | date:'d MMMM y, h:mm a' }}</strong>
+              </div>
+
+              <div class="detail-row">
+                <span>Pickup Location</span>
+                <strong>{{ cashDetails.pickupLocation }}</strong>
+              </div>
+
+              <div class="detail-row">
+                <span>Payment Method</span>
+                <strong>{{ cashDetails.paymentMethod }}</strong>
+              </div>
+
+              <div class="detail-row">
+                <span>Amount</span>
+                <strong>{{ totalAmount | number:'1.2-2' }} {{ cashDetails.currency }}</strong>
+              </div>
+
+              <div class="detail-row">
+                <span>Fee</span>
+                <strong>Free</strong>
+              </div>
+
+              <div class="detail-row">
+                <span>Total Amount</span>
+                <strong>{{ totalAmount | number:'1.2-2' }} {{ cashDetails.currency }}</strong>
+              </div>
+            </div>
+          </ion-accordion>
+        </ion-accordion-group>
+      </div>
+
+    </div>
+    <ion-button expand="block" class="done-button" (click)="done()">Done</ion-button>
+  </div>
+</ion-content>

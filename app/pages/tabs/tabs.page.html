@@ -1,0 +1,27 @@
+<ion-tabs>
+  <ion-fab vertical="bottom" horizontal="center">
+    <ion-fab-button (click)="goToScanPage()">
+      <ion-icon src="assets/icons/scan.svg"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <ion-tab-bar slot="bottom" class="ion-no-border">
+    <ion-tab-button tab="home">
+      <ion-icon src="assets/icons/home.svg"></ion-icon>
+    </ion-tab-button>
+    <ion-tab-button tab="statistic" class="statistic-button">
+      <ion-icon src="assets/icons/statistic.svg"></ion-icon>
+    </ion-tab-button>
+
+    <svg height="50" viewBox="0 0 100 50" width="100" xmlns="http://www.w3.org/2000/svg">
+      <path d="M100 0v50H0V0c.543 27.153 22.72 49 50 49S99.457 27.153 99.99 0h.01z" fill-rule="evenodd"></path>
+    </svg>
+
+    <ion-tab-button tab="cards" class="cards-button">
+      <ion-icon src="assets/icons/card.svg"></ion-icon>
+    </ion-tab-button>
+    <ion-tab-button tab="profile">
+      <ion-icon src="assets/icons/person.svg"></ion-icon>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>

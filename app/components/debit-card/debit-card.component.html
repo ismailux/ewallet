@@ -1,0 +1,34 @@
+<div class="card" [ngClass]="'card_' + colorKey" tabindex="0">
+  <!-- front face -->
+  <div class="card__part card__front">
+      <img class="card__front_chip card__square " src="assets/images/Visa/chip1.png" />
+      <img class=".card__front_ionicwhite card__square " src="assets/images/Visa/ionicwhite.png" />
+    <div class="card__front_logo">
+      <img src="assets/images/Visa/visa.png" class="card__logo" />
+    </div>
+    <div class="card_number">{{ number }}</div>
+    <div class="card__space_75">
+      <p class="card__label">CARD HOLDER</p>
+      <p class="card__info">{{ description }}</p>
+    </div>
+    <div class="card__space_25">
+      <p class="card__label">EXPIRES</p>
+      <p class="card__info">{{ expiry }}</p>
+    </div>
+  </div>
+
+  <!-- back face -->
+ 
+  <div class="card__part card__back">
+    <div class="card__black_line"></div>
+
+    <div class="card__back_content">
+      <p class="card__label">CVV</p>
+      <div class="card__secret"><p class="card__secret__last">{{ secret }}</p></div>
+    </div>
+    <div class="card__back_logo">
+      <img src="assets/images/Visa/visa.png" class="card__logo" />
+    </div>
+  </div>
+
+</div>

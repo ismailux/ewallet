@@ -1,0 +1,45 @@
+<ion-header class="ion-no-border custom-header">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/top-up/details"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Confirm Top-Up</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+   <div class="main-content">
+  <!-- Transaction Details -->
+<div class="info-card">
+  <p class="section-title">Transaction Details</p>
+  <ion-list class="details-list" lines="none">
+    <ion-item>
+      <ion-label>Amount</ion-label>
+      <span slot="end">
+        {{ amount | number:'1.2-2' }} MAD
+      </span>
+    </ion-item>
+    <ion-item>
+      <ion-label>Fee</ion-label>
+      <span slot="end" class="free-text">Free</span>
+    </ion-item>
+    <ion-item>
+      <ion-label>Date &amp; Time</ion-label>
+      <span slot="end">
+        {{ today | date:'d MMMM y, h:mm a' }}
+      </span>
+    </ion-item>
+    <hr />
+    <ion-item class="total-item">
+      <ion-label>Total</ion-label>
+      <span slot="end" class="total-amount">
+        {{ amount | number:'1.2-2' }} MAD
+      </span>
+    </ion-item>
+  </ion-list>
+</div></div>
+<ion-button
+expand="block"
+class="confirm-button"
+(click)="onConfirmClick()">Confirm</ion-button>
+</ion-content>

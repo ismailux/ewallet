@@ -1,0 +1,321 @@
+ion-content {
+  --padding-bottom: 90px;
+}
+
+.custom-header {
+  color: var(--ion-color-dark);
+  padding-bottom: 16px;
+  
+}
+
+// On rend la barre d'outils à l'intérieur transparente
+.custom-header ion-toolbar {
+  --background: #f4f5f8;
+  --color: var(--ion-color-dark);
+}
+
+// Style du titre et des boutons
+.custom-header ion-title {
+  text-align: center;
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+
+.custom-header ion-button, .custom-header ion-back-button {
+  --color: var(--ion-color-dark);
+  font-size: 24px;
+}
+
+.main-content {
+  padding: 16px;
+}
+
+// Style pour les filtres
+ion-segment {
+  --background: #e0e0e1;
+  border-radius: 12px;
+  margin-bottom: 24px;
+}
+
+ion-segment-button {
+  --color: var(--ion-color-medium);
+  --color-checked: var(--ion-color-primary);
+  --indicator-color: var(--ion-color-primary);
+  --indicator-box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --border-radius: 10px;
+  text-transform: none;
+  font-weight: 500;
+
+}
+
+// Style pour le bouton flottant
+ion-fab-button {
+  --background: var(--ion-color-primary);
+  --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.cards-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  //justify-content: center;
+  //padding: 20px 0;
+}
+
+.physical-card-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 0;
+}
+
+
+
+// On applique le style de la carte à notre ion-card
+.credit-card {
+  margin: 0;
+  position: relative;
+  // Assurez-vous d'avoir une image de fond dans le bon dossier
+  background: url('/assets/images/Mastercard/bg.png');
+  background-size: cover;
+  padding: 25px;
+  border-radius: 28px;
+  max-width: 380px;
+  width: 100%;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  color: white; // On met le texte en blanc par défaut
+
+  header,
+  .logo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .logo img {
+    width: 48px;
+    margin-right: 10px;
+  }
+
+  h5 {
+    font-size: 16px;
+    font-weight: 400;
+  }
+
+  header .chip {
+    width: 60px;
+  }
+
+  h6 {
+    font-size: 10px;
+    font-weight: 400;
+    opacity: 0.8;
+  }
+
+  h5.number {
+    margin-top: 4px;
+    font-size: 18px;
+    letter-spacing: 1px;
+  }
+
+  h5.name {
+    margin-top: 20px;
+  }
+
+  .card-details {
+    margin-top: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+}
+
+// Styles pour le design de la carte VISA
+
+.visa-card-front {
+  margin: 0;
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1.58; // Aspect ratio standard d'une carte
+  max-width: 380px;
+  border-radius: 18px;
+  background-size: cover;
+  box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+  color: #ccc;
+  font-family: 'PT Mono', monospace; // Police spécifique à ce design
+
+  * {
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    letter-spacing: 0.075em;
+    text-transform: uppercase;
+    font-size: clamp(0.75rem, 2.8vw + 0.2rem, 1.1rem);
+    inset: 5%;
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
+    z-index: 5;
+  }
+}
+
+.visa-card-front .number {
+  text-align: center;
+  font-size: clamp(1rem, 8vw - 0.5rem, 1.5rem);
+  letter-spacing: 0.05em;
+  top: 60%;
+  bottom: auto;
+}
+
+.visa-card-front .name, .visa-card-front .expiry {
+  top: auto;
+}
+
+.visa-card-front .name {
+  right: auto;
+}
+
+.visa-card-front .expiry {
+  left: auto;
+}
+
+.visa-card-front .cardLogo {
+  bottom: auto;
+  left: auto;
+  width: 15%;
+  filter: invert(1) saturate(0) brightness(1.2) contrast(1.2);
+  mix-blend-mode: screen;
+}
+
+.visa-card-front .brand {
+  bottom: auto;
+  right: auto;
+  width: 30%;
+}
+
+.visa-card-front .chip {
+  width: 14%;
+  aspect-ratio: 5/4;
+  left: 10%;
+  top: 30%;
+  border-radius: 10%;
+  overflow: hidden;
+
+  svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    fill: none;
+    stroke: #444;
+    stroke-width: 2;
+  }
+}
+
+.visa-card-front .contactless {
+  left: 25%;
+  top: 32%;
+  width: 10%;
+  rotate: 90deg;
+  stroke-width: 1.25;
+  stroke: currentColor;
+  fill: none;
+  opacity: 0.7;
+}
+
+// --- NOUVEAUX STYLES POUR LA CARTE VIRTUELLE ---
+
+.virtual-card-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 0;
+}
+
+.virtual-card {
+  width: 100%;
+  max-width: 380px;
+  aspect-ratio: 1.58;
+  position: relative;
+  
+  background: radial-gradient(
+    140% 140% at 0% 0%,
+    rgba(94, 24, 215, 0.746) 0%,
+    rgba(24, 1, 1, 0.427) 100%
+  );
+  border-top: 1px solid rgba(238, 237, 237, 0.43);
+  border-left: 1px solid rgba(238, 237, 237, 0.43);
+  border-radius: 30px;
+  backdrop-filter: blur(30px);
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
+  color: white;
+  padding: 20px;
+
+  h3, h5, img {
+    position: absolute;
+    margin: 0;
+  }
+
+  // --- POSITIONS CORRIGÉES ---
+
+  .bank {
+    font-size: 22px;
+    top: 30px;
+    right: 30px;
+  }
+
+  .chip {
+    width: 45px;
+    top: 50px; // <-- On remonte un peu
+    left: 30px;
+  }
+
+  .indicator {
+    width: 35px;
+    top: 50px; // <-- On remonte un peu
+    left: 90px;
+  }
+
+  .number {
+    font-size: 22px;
+    font-weight: 400;
+    bottom: 95px; // Ajusté pour l'espace
+    left: 30px;
+    letter-spacing: 2px;
+    width: calc(100% - 60px);
+  }
+
+  // On ajuste l'espacement pour "Card Holder" et "Expiry Date"
+  .card-holder, .valid-date {
+    text-transform: uppercase;
+    font-size: 14px;
+    line-height: 1.2; // <-- Rapproche les lignes
+    bottom: 30px;
+    
+    span {
+      font-size: 10px;
+      font-weight: 400;
+      opacity: 0.8;
+      display: block; 
+    }
+  }
+
+  .card-holder {
+    left: 30px;
+  }
+
+  .valid-date {
+    left: 180px;
+  }
+
+  .logo {
+    width: 60px;
+    right: 30px;
+    bottom: 25px;
+  }
+}
+
+.confirm-button {
+  width: 100%;
+  //max-width: 300px;
+  margin: 0 auto;
+  padding: 12px;
+}

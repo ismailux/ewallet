@@ -1,0 +1,27 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Bills</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-list *ngIf="accounts().length; else empty">
+    <ion-item button detail="true" *ngFor="let a of accounts()" [routerLink]="[a.id]">
+      <ion-label>
+        <h2>{{ carrierName(a.carrierId) }} • {{ a.nickname || a.customerRef }}</h2>
+        <p *ngIf="a.autopay">Autopay: {{ a.frequency }}</p>
+        <p *ngIf="!a.autopay">Manual</p>
+      </ion-label>
+      <ion-button fill="clear" slot="end" (click)="payNow(a); $event.stopPropagation()">Pay</ion-button>
+    </ion-item>
+  </ion-list>
+  <ng-template #empty>
+    <div class="ion-padding">No bills yet. Add your first bill.</div>
+  </ng-template>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="goAdd()">
+      <ion-icon [icon]="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

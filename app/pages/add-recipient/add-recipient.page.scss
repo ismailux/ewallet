@@ -1,0 +1,72 @@
+// --- Style de l'en-tête ---
+ion-toolbar {
+  --background: var(--ion-background-color, #f4f5f8);
+  --border-width: 0;
+
+  ion-title {
+    text-align: center;
+    font-weight: 600;
+    color: var(--ion-color-dark);
+  }
+
+  ion-buttons {
+    color: var(--ion-color-dark);
+  }
+}
+
+// --- Contenu principal ---
+.main-content {
+  padding: 16px;
+}
+
+.form-list {
+  background: transparent;
+}
+
+// --- Style des items du formulaire ---
+ion-item {
+  --background: transparent;
+  --padding-start: 0;
+  --inner-padding-end: 0;
+  margin-bottom: 24px;
+
+  // Style du libellé (Name, Account No...)
+  ion-label[position="stacked"] {
+    font-weight: 500;
+    font-size: 1rem;
+    color: var(--ion-color-dark);
+    margin-bottom: 8px;
+  }
+
+  // Style pour les champs de saisie, inspiré de la barre de recherche
+  ion-input, ion-select {
+    --background: #eef0f2; // Fond gris clair
+    --padding-start: 16px;
+    --padding-end: 16px;
+    border-radius: 12px; // Coins arrondis
+    min-height: 50px;
+    color: var(--ion-color-dark);
+  }
+
+  // Style pour la flèche du menu déroulant
+  ion-select::part(icon) {
+    font-size: 20px;
+  }
+}
+
+// --- Style du pied de page et du bouton (inchangé) ---
+ion-footer {
+  padding: 16px;
+  background: var(--ion-background-color, #f4f5f8);
+  &::before {
+    display: none;
+  }
+}
+
+.continue-button {
+  --background: var(--ion-color-primary);
+  --border-radius: 16px;
+  height: 50px;
+  font-weight: 600;
+  text-transform: none;
+}

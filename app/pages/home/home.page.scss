@@ -1,0 +1,430 @@
+ion-content {
+  // Le fond global de la page, visible derrière l'encoche
+  --background: #f4f5f8;
+  --padding-bottom: 90px;
+}
+
+
+// 1. Ajuster la hauteur du fond et enlever l'arrondi qui n'est plus utile ici
+.header-background {
+  height: 220px; // Une hauteur de base pour le fond violet
+  background: linear-gradient(159deg, rgba(0,51,102,1) 0%, rgba(15,82,186,1) 100%);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  border-bottom-left-radius: 25px;
+  border-bottom-right-radius: 25px;
+}
+
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  ion-avatar {
+    width: 48px;
+    height: 48px;
+    border: 2px solid var(--ion-color-secondary);
+  }
+
+  ion-icon {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+.balance-section {
+  text-align: center; 
+  color: white;
+  padding-top: 25px;
+
+  .balance-title {
+    margin: 0;
+    font-size: 1rem;
+    color: var(--ion-color-secondary);
+  }
+  .balance-amount {
+    margin: 4px 0 0 0;
+    font-size: 1.8rem;
+    font-weight: 700;
+  }
+
+  .amount-line {
+  display: flex;
+  flex-direction: column; 
+  align-items: center;    
+  gap: 4px;               
+}
+}
+
+.main-content-panel {
+  //background: white;
+  border-top-left-radius: 32px;
+  border-top-right-radius: 32px;
+  margin-top: -40px; 
+  padding-top: 65px; 
+}
+
+.actions-card {
+  width: 80%;
+  margin: 0 auto; // Centre la carte
+  margin-top: -65px;
+  position: relative; 
+  z-index: 10;     
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 8px 2px;
+}
+
+
+.action-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  ion-icon { font-size: 28px; color: var(--ion-color-primary); }
+  ion-label { font-size: 0.7rem; color: var(--ion-color-dark); }
+}
+
+.section-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--ion-color-dark);
+}
+
+.promo-section {
+  //padding: 16px;
+  //padding-top: 8px;
+  //margin-top: 2px;
+  padding-top: 4px;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-bottom: 4px;
+
+}
+
+// Style pour l'en-tête "Promo & Discount" et "See more"
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+
+  .see-more {
+    color: var(--ion-color-primary);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.8rem;
+  }
+}
+
+// Conteneur pour la liste des cartes
+.promo-list {
+  display: flex;
+  overflow-x: auto; // Active le défilement horizontal
+  gap: 16px;
+  padding-bottom: 10px; // Un peu d'espace pour l'ombre
+
+  // Cache la barre de défilement pour un look plus propre
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  scrollbar-width: none; // Pour Firefox
+}
+
+// Style des cartes de promotion
+.promo-card {
+  flex: 0 0 70%; // Chaque carte prend 70% de la largeur de l'écran
+  background: var(--ion-color-dark-purple);
+  color: white;
+  border-radius: 20px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+  p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--ion-color-secondary);
+    opacity: 0.9;
+  }
+
+  // Juste pour avoir une couleur différente sur la 2ème carte d'exemple
+  &.second-card {
+    background: #3a1e74;
+  }
+}
+
+.payment-section {
+  padding: 0 16px;
+  
+}
+
+.payment-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 8px;
+
+  ion-icon {
+    background-color: #f0e9fe; 
+    color: var(--ion-color-primary);
+    border-radius: 12px;
+    font-size: 16px;
+    padding: 12px;
+    width: 36px;
+    height: 36px;
+  }
+
+  ion-label {
+    font-size: 0.8rem;
+    color: var(--ion-color-dark);
+  }
+}
+
+.notification-wrapper {
+  position: relative;
+}
+.notification-dot {
+  position: absolute;
+  top: 0;
+  right: 2px;
+  width: 12px;
+  height: 12px;
+  background-color: #eb445a; // Rouge "danger" d'Ionic
+  border-radius: 50%;
+  border: 1px solid var(--ion-color-primary);
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px; // Espace entre la cloche et le menu
+
+  ion-icon {
+    font-size: 26px; // Taille unifiée pour la cloche et le menu
+    color: white;
+  }
+
+}
+
+
+
+// Conteneur pour aligner l'avatar et le texte
+.welcome-section {
+  display: flex;
+  align-items: center;
+  gap: 12px; // Espace entre l'avatar et le texte
+}
+
+// Style pour les textes de bienvenue
+.welcome-text p {
+  margin: 0; // Enlève la marge par défaut des paragraphes
+  line-height: 1.4; // Ajuste l'espacement vertical entre les lignes
+}
+
+.welcome-text .greeting {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: white;
+}
+
+.welcome-text .message {
+  font-size: 0.6rem;
+  color: var(--ion-color-secondary); // Utilise la couleur violet clair de votre palette
+  opacity: 0.9;
+}
+
+.transactions-section {
+  padding-top: 4px;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-bottom: 4px;
+}
+
+.transaction-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px; 
+}
+
+// C'est la règle la plus importante à vérifier
+.transaction-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  background: white;
+  border-radius: 16px;
+  padding: 12px 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+.transaction-logo {
+  //width: 48px;
+  //height: 48px;
+  //border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36px;
+  //background-color: #f5f5f7;
+}
+
+
+.transaction-details {
+  flex-grow: 1; 
+  .transaction-name {
+    margin: 0;
+    font-weight: 500;
+    color: var(--ion-color-dark);
+  }
+  .transaction-date {
+    margin: 4px 0 0 0;
+    font-size: 0.9rem;
+    color: var(--ion-color-medium);
+  }
+}
+
+// Style pour les montants
+.transaction-amount.positive {
+  font-weight: 600;
+  color: #2dd36f; // Vert pour les revenus
+}
+.transaction-amount.negative {
+  font-weight: 600;
+  color: #eb445a; // Rouge pour les dépenses
+}
+
+
+// Conteneur pour le titre du solde et l'icône
+.balance-header {
+  display: flex;
+  justify-content: center; // Centre les éléments horizontalement
+  align-items: center;
+  gap: 8px; // Espace entre le titre et l'icône
+}
+
+// Style pour l'icône de visibilité
+.visibility-icon {
+  font-size: 22px;
+  color: var(--ion-color-secondary);
+  //opacity: 0.8;
+  cursor: pointer; // Change le curseur pour indiquer que c'est cliquable
+}
+
+.bills-insights {
+  margin-top: 4px;
+
+  .insights-title {
+    margin: 0 0 4px 0; /* minimal space under title */
+    font-weight: 700;
+  }
+
+  .insights-grid {
+    --ion-grid-padding: 0;
+    --ion-grid-column-padding: 2px; /* tiny horizontal gap */
+
+    ion-row {
+      margin: 0;
+    }
+
+    ion-col {
+      padding: 2px !important; /* tiny vertical gap */
+      display: flex;
+    }
+
+    .insight-card {
+      flex: 1;
+      border-radius: 14px;
+      color: #fff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 110px;
+      padding: 10px;
+
+      ion-card-header {
+        padding: 0;
+        ion-card-subtitle {
+          font-size: 0.8rem;
+          opacity: 0.9;
+          color: white;
+        }
+        ion-card-title {
+          font-size: 1.1rem;
+          font-weight: bold;
+          line-height: 1.2;
+          color: white;
+        }
+      }
+
+      ion-card-content {
+        font-size: 0.75rem;
+        opacity: 0.85;
+      }
+    }
+
+
+
+.bills-insights {
+  /* remove extra spacing above */
+  margin-top: 4px;
+
+  /* FULL-WIDTH ALERT */
+  .alert-wrap {
+    /* same side padding as the grid produces, so edges align */
+    padding-inline: 8px;      /* tweak to match your card spacing */
+    width: 100%;
+  }
+
+  .alert-card {
+    border-radius: 12px;
+    padding: 12px;
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    font-size: 0.95rem;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    gap: 6px; /* space between lines */
+    width: 100%; /* ensure it spans the wrap */
+  }
+
+  .alert-line { color: #444;
+    .highlight { font-weight: 700; color: #000; }
+  }
+  .alert-line.missed { color: #c00;
+    .highlight { color: #c00; }
+  }
+
+}
+
+
+    /* Gradient color themes */
+    .blue {
+      background: linear-gradient(135deg, #3bb2b8, #0084a3);
+    }
+    .green {
+      background: linear-gradient(135deg, #0f8e39, #027e1b);
+    }
+    .purple {
+      background: linear-gradient(135deg, #9c27b0, #673ab7);
+    }
+    .red {
+      background: linear-gradient(135deg, #ff4b2b, #ff416c);
+    }
+  }
+}
+

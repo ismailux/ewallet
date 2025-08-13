@@ -1,0 +1,38 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Add Recipient</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="main-content">
+    <ion-list class="form-list" lines="none">
+      <ion-item>
+        <ion-label position="stacked">Name</ion-label>
+        <ion-input placeholder="Full Name"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Account No</ion-label>
+        <ion-input placeholder="4525 2369 4785 2056"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Email</ion-label>
+        <ion-input type="email" placeholder="jeromebell@gmail.com"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Select Type</ion-label>
+        <ion-select interface="popover" placeholder="Bank">
+          <ion-select-option value="bank">Bank</ion-select-option>
+          <ion-select-option value="wallet">Wallet</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+    <ion-button expand="block" class="continue-button">Add Recipient</ion-button>
+  </div>
+</ion-content>

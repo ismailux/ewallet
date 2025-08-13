@@ -1,0 +1,58 @@
+ion-tabs {
+  // --- Style du bouton flottant (FAB) ---
+  ion-fab {
+    // Positionne le bouton au-dessus de la zone de sécurité iOS
+    margin-bottom: env(safe-area-inset-bottom);
+    ion-fab-button {
+      --background: var(--ion-color-primary);
+      --box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+    }
+  }
+
+  // --- Style de la barre d'onglets ---
+  ion-tab-bar {
+    --border: 0;
+    --background: transparent; // La barre elle-même est transparente
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    justify-content: space-between; // Espace les éléments
+
+    // Crée une fausse couleur de fond pour la zone de sécurité iOS
+    &:after {
+      content: " ";
+      width: 100%;
+      bottom: 0;
+      background: white; // Couleur de fond de la barre
+      height: env(safe-area-inset-bottom);
+      position: absolute;
+    }
+  }
+
+  // --- Style des boutons d'onglets ---
+  ion-tab-button {
+    --background: white; // Chaque bouton a son propre fond blanc
+    --color-selected: var(--ion-color-primary); // Couleur de l'icône active
+  }
+
+  // Arrondi pour le bouton à droite de la découpe
+  .statistic-button {
+    border-top-right-radius: 18px;
+  }
+
+  // Arrondi pour le bouton à gauche de la découpe
+  .cards-button {
+    border-top-left-radius: 18px;
+  }
+
+  // --- Style de la découpe SVG ---
+  svg {
+    width: 80px; // Largeur de la découpe
+    margin-top: 20px;
+    path {
+      fill: white; // La découpe a la même couleur de fond que les boutons
+    }
+  }
+}

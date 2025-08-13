@@ -1,0 +1,76 @@
+<ion-header class="ion-no-border custom-header">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Profile</ion-title>
+    <ion-buttons slot="end">
+      <ion-icon slot="icon-only" name="ellipsis-vertical"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="main-content">
+
+    <div class="user-info">
+      <ion-avatar>
+        <img alt="User avatar" src="assets/images/avatar.jpeg" />
+      </ion-avatar>
+      <div class="user-details">
+        <h2>Mr. Karim Alaoui</h2>
+        <p>081214141919</p>
+      </div>
+    </div>
+
+    <div class="balance-card">
+      <div class="balance-section">
+        <ion-icon name="wallet"></ion-icon>
+        <div class="balance-text">
+          <span>Balance</span>
+          <strong>21 350.54 €</strong>
+        </div>
+      </div>
+      <div class="separator"></div>
+      <div class="qr-section">
+        <ion-icon name="qr-code"></ion-icon>
+        <span>QR Code</span>
+      </div>
+    </div>
+
+    <div class="link-list-card">
+      <p class="section-title">Account</p>
+      <ion-list lines="none">
+        <ion-item button>Update Account</ion-item>
+        <ion-item button>Account Settings</ion-item>
+        <ion-item button>My Promo Code</ion-item>
+        <ion-item button>Delete Account</ion-item>
+      </ion-list>
+    </div>
+
+    <div class="link-list-card">
+      <p class="section-title">Privacy</p>
+      <ion-list lines="none">
+        <ion-item button>Account Security</ion-item>
+        <ion-item button>Change Password</ion-item>
+      </ion-list>
+    </div>
+
+    <div class="link-list-card">
+      <p class="section-title">General Info</p>
+      <ion-list lines="none">
+        <ion-item button>Help Center</ion-item>
+        <ion-item button>Terms & Conditions</ion-item>
+        <ion-item button>Privacy Policy</ion-item>
+        <ion-item button>Contact Us</ion-item>
+      </ion-list>
+    </div>
+
+  </div>
+  <div class="logout-wrapper">
+    <ion-button fill="clear" class="logout-button" (click)="logout()">
+      <ion-icon name="log-out-outline"></ion-icon>
+      Logout
+    </ion-button>
+  </div>
+</ion-content>

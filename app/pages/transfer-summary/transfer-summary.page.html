@@ -1,0 +1,82 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/send-money"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Confirm Transfer</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="main-content" *ngIf="recipient && transferDetails">
+
+    <div class="info-card">
+      <p class="section-title">Account No.</p>
+      <div class="account-item">
+        <div class="account-icon">
+          <img src="assets/icons/wallet.png" alt="Wallet Icon" />
+        </div>
+
+        <div class="account-details">
+          <span class="account-name">E-Wallet</span>
+          <span class="account-balance">Available Balance: 5,430.00 €</span>
+        </div>
+
+        <a href="#" class="change-link">Change</a>
+      </div>
+    </div>
+
+    <div class="info-card">
+      <p class="section-title">Transaction Details</p>
+      <ion-list class="details-list" lines="none">
+        <ion-item>
+          <ion-label>Transfer to</ion-label>
+          <span slot="end">{{ recipient.name }}</span>
+        </ion-item>
+        <ion-item>
+          <ion-label>Phone number</ion-label>
+          <span slot="end">{{ recipient.account }}</span>
+        </ion-item>
+        <ion-item>
+          <ion-label>Category</ion-label>
+          <span slot="end">{{ transferDetails.step2.category }}</span>
+        </ion-item>
+        <ion-item>
+          <ion-label>Amount</ion-label>
+          <span slot="end">{{ transferDetails.step1.amount | number:'1.2-2' }} {{
+            transferDetails.step1.currency}}</span>
+        </ion-item>
+        <ion-item>
+          <ion-label>Fee</ion-label>
+          <span slot="end" class="free-text">Free</span>
+        </ion-item>
+        <ion-item>
+          <ion-label>Date & time</ion-label>
+          <span *ngIf="transferDetails.step4.scheduleType === 'now'" slot="end">
+            {{ today | date:'d MMMM y, h:mm a' }}
+          </span>
+          <span *ngIf="transferDetails.step4.scheduleType === 'date'" slot="end">
+            {{ transferDetails.step4.scheduleDate | date:'d MMMM y' }}
+          </span>
+        </ion-item>
+        <hr />
+        <ion-item class="total-item">
+          <ion-label>Total Amount</ion-label>
+          <span slot="end" class="total-amount">{{ totalAmount | number:'1.2-2' }} {{
+            transferDetails.step1.currency}}</span>
+        </ion-item>
+      </ion-list>
+    </div>
+
+    <div class="info-card">
+      <p class="section-title">Message</p>
+      <p class="message-text">{{ transferDetails.step3.note || 'No message' }}</p>
+    </div>
+
+  </div>
+  <ion-button expand="block" class="confirm-button" (click)="goToConfirmPin()">
+    <ng-container>
+      Confirm
+    </ng-container>
+  </ion-button>
+</ion-content>

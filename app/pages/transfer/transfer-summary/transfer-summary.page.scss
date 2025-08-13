@@ -1,0 +1,133 @@
+.custom-header {
+  color: var(--ion-color-dark);
+  padding-bottom: 16px;
+  
+}
+
+.custom-header ion-toolbar {
+  --background: #f4f5f8;
+  --color: var(--ion-color-dark);
+}
+
+.custom-header ion-title {
+  text-align: center;
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+
+.custom-header ion-button, .custom-header ion-back-button {
+  --color: var(--ion-color-dark);
+  font-size: 24px;
+}
+
+.step-text {
+    color: var(--ion-color-medium);
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+/* Main content wrapper */
+.main-content {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+ion-content {
+  --background: transparent;
+  --padding-bottom: 90px;
+}
+
+/* Card container */
+.info-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+/* Section headings inside cards */
+.section-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--ion-color-medium);
+  margin-bottom: 8px;
+}
+
+/* Account Item (top card) */
+.account-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.account-icon img {
+  width: 32px;
+  height: 32px;
+}
+
+.account-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.account-name {
+  font-weight: 600;
+  color: var(--ion-color-dark);
+}
+
+.account-balance {
+  font-size: 0.85rem;
+  color: var(--ion-color-medium);
+}
+
+.change-link {
+  font-size: 0.85rem;
+  color: var(--ion-color-primary);
+  text-decoration: none;
+}
+
+/* Transaction details list */
+.details-list ion-item {
+  --padding-start: 0;
+  --inner-padding-end: 0;
+  background: transparent;
+  --background: transparent!important;
+  --inner-background: transparent!important;
+  color: var(--ion-color-dark);
+}
+
+.free-text {
+  color: var(--ion-color-success);
+}
+
+.total-item {
+  margin-top: 8px;
+  border-top: 1px solid #e0e0e0;
+  padding-top: 8px;
+}
+
+.total-amount {
+  font-weight: 700;
+  color: var(--ion-color-dark);
+}
+
+/* Message block */
+.message-text {
+  font-size: 0.9rem;
+  color: var(--ion-color-medium);
+}
+
+/* Confirm button at bottom */
+.confirm-button {
+  margin: 16px;
+  --border-radius: 8px;
+}
+
+
+
+.details-list {
+  background: transparent;
+}

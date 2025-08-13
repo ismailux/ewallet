@@ -1,0 +1,60 @@
+<ion-header class="ion-no-border">
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-button fill="dark" (click)="onCancel()">
+                <ion-icon [icon]="arrowBack"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-title>Confirm PIN</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="pin-content">
+    <div class="pin-container">
+        <div class="pin-input-section">
+            <h2 class="pin-title">Enter PIN Number</h2>
+            <p class="pin-subtitle">Please enter your PIN to confirm payment</p>
+
+            <div class="pin-display">
+                <div *ngFor="let digit of pinDigits; let i = index" class="pin-digit"
+                    [class.active]="i === pin.length && pin.length < 4">
+                    {{ digit }}
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="number-pad">
+            <div class="number-row">
+                <ion-button fill="clear" class="number-button" (click)="onNumberPress('1')">1</ion-button>
+                <ion-button fill="clear" class="number-button" (click)="onNumberPress('2')">2</ion-button>
+                <ion-button fill="clear" class="number-button" (click)="onNumberPress('3')">3</ion-button>
+            </div>
+            <div class="number-row">
+                <ion-button fill="clear" class="number-button" (click)="onNumberPress('4')">4</ion-button>
+                <ion-button fill="clear" class="number-button" (click)="onNumberPress('5')">5</ion-button>
+                <ion-button fill="clear" class="number-button" (click)="onNumberPress('6')">6</ion-button>
+            </div>
+            <div class="number-row">
+                <ion-button fill="clear" class="number-button" (click)="onNumberPress('7')">7</ion-button>
+                <ion-button fill="clear" class="number-button" (click)="onNumberPress('8')">8</ion-button>
+                <ion-button fill="clear" class="number-button" (click)="onNumberPress('9')">9</ion-button>
+            </div>
+            <div class="number-row">
+                <div style="width:70px;height:70px;"></div>
+                <ion-button fill="clear" class="number-button" (click)="onNumberPress('0')">0</ion-button>
+                <ion-button fill="clear" class="number-button backspace-button" (click)="onBackspace()">
+                    <ion-icon slot="icon-only" name="backspace-outline"></ion-icon>
+                </ion-button>
+            </div>
+        </div>
+
+        <ion-button expand="block" class="confirm-button" [disabled]="pin.length !== 4" (click)="onConfirm()">
+            <ng-container>
+                Confirm
+            </ng-container>
+        </ion-button>
+
+    </div>
+</ion-content>

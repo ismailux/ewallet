@@ -1,0 +1,36 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-title>QR Code</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="main-content" *ngIf="payer && requestDetails">
+    <div class="summary">
+      <p>You are requesting a payment from <strong>{{ payer.name }}</strong></p>
+      <h2>{{ requestDetails.amount ? (requestDetails.amount | number:'1.2-2') + ' €' : 'An open amount' }}</h2>
+      <p *ngIf="requestDetails.message" class="message-note">Note: {{ requestDetails.message }}</p>
+    </div>
+
+    <div class="qr-code-container">
+      <qrcode [qrdata]="qrCodeString" [width]="256" [errorCorrectionLevel]="'M'" [colorDark]="'#ffffff'" [colorLight]="'#7A25F6'"></qrcode>
+    </div>
+
+    <div class="action-buttons">
+      <ion-button fill="clear" class="action-btn" (click)="shareQrCode()">
+        <ion-icon slot="start" name="share-social-outline"></ion-icon>
+        Share QR Code
+      </ion-button>
+      <ion-button fill="clear" class="action-btn" (click)="downloadQrCode()">
+        <ion-icon slot="start" name="download-outline"></ion-icon>
+        Download QR Code
+      </ion-button>
+      <ion-button fill="outline" expand="block" class="link-button" (click)="shareLink()">
+        Share via a secure link
+      </ion-button>
+      
+    </div>
+    <ion-button expand="block" (click)="done()">Done</ion-button>
+
+  </div>
+</ion-content>

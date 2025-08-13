@@ -1,0 +1,79 @@
+// --- En-tête de la modale ---
+ion-toolbar {
+  --background: var(--ion-background-color, #f4f5f8); // Fond clair
+  --border-width: 0;
+
+  ion-title {
+    color: var(--ion-color-dark);
+    font-weight: 600;
+    text-align: center;
+  }
+
+  ion-button {
+    --color: var(--ion-color-primary); // Bouton "Close" en violet
+    font-weight: 500;
+  }
+
+}
+
+
+    // Barre de recherche
+  ion-searchbar {
+    --background: white;
+    --border-radius: 12px;
+    --box-shadow: none;
+    padding: 0 16px 16px 16px; // On ajoute le padding ici
+    --color: #000000; 
+    --placeholder-color: #6c6c6c; 
+    --icon-color: #6c6c6c; 
+  }
+
+// --- Contenu de la modale ---
+ion-content {
+  // On s'assure que le fond de la page de la modale est bien clair
+  --background: var(--ion-background-color, #f4f5f8);
+
+
+  // Liste des devises
+  ion-list {
+    padding: 0 16px;
+    background: transparent; // La liste elle-même n'a pas de fond
+    height: calc(100% - 56px); /* subtract the searchbar height */
+    overflow-y: auto;
+  }
+}
+
+// --- Style pour chaque item de la liste ---
+ion-item {
+  --padding-start: 30px;
+  --inner-padding-end: 0;
+  --background: transparent;
+  display: flex;
+  align-items: center;
+  gap: 16px; // Espace entre les éléments
+  margin-bottom: 8px;
+}
+
+.currency-flag {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+}
+
+ion-label {
+  display: flex;
+  align-items: center;
+  gap: 12px; // Espace entre le code et le nom
+  margin-left: 16px; 
+  color: var(--ion-color-dark);
+}
+
+.currency-code {
+  font-weight: 600;
+  color: var(--ion-color-dark);
+  width: 45px; // Pour un bon alignement vertical des noms
+}
+
+.currency-name {
+  color: var(--ion-color-dark);
+}

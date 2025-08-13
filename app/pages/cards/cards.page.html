@@ -1,0 +1,124 @@
+<ion-header class="ion-no-border custom-header">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>My Cards</ion-title>
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon slot="icon-only" name="ellipsis-vertical"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content [fullscreen]="true">
+  <div class="main-content">
+
+    <ion-segment [value]="selectedSegment" (ionChange)="segmentChanged($event)">
+      <ion-segment-button value="physical">
+        <ion-label>Physical Cards</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="virtual">
+        <ion-label>Virtual Cards</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+
+    <div class="cards-list" *ngIf="selectedSegment === 'physical'">
+      <div *ngFor="let card of physicalCards" class="physical-card-container">
+        <ion-card *ngIf="card.type === 'Mastercard'" class="credit-card"
+          [style.background-image]="'url(' + card.bg + ')'">
+          <header>
+            <span class="logo">
+              <img [src]="card.logo" alt="Card Logo" />
+              <h5>{{ card.brand }}</h5>
+            </span>
+            <img [src]="card.chip" alt="Card Chip" class="chip" />
+          </header>
+          <div class="card-details">
+            <div class="name-number">
+              <h6>Card Number</h6>
+              <h5 class="number">{{ card.number }}</h5>
+              <h5 class="name">{{ card.holderName }}</h5>
+            </div>
+            <div class="valid-date">
+              <h6>Exp</h6>
+              <h5>{{ card.expiryDate }}</h5>
+            </div>
+          </div>
+        </ion-card>
+
+        <ion-card *ngIf="card.type === 'VISA'" class="visa-card-front"
+          [style.background-image]="'url(' + card.bg + ')'">
+          <label class="brand">{{ card.brand }}</label>
+          <label class="number">{{ card.number }}</label>
+          <label class="name">{{ card.holderName }}</label>
+          <label class="expiry">{{ card.expiryDate }}</label>
+          <img class="cardLogo" [src]="card.logo" />
+
+          <div class="chip">
+            <svg role="img" viewBox="0 0 100 100" aria-label="Chip">
+              <polyline points="0,50 35,50"></polyline>
+              <polyline points="0,20 20,20 35,35"></polyline>
+              <polyline points="50,0 50,35"></polyline>
+              <polyline points="65,35 80,20 100,20"></polyline>
+              <polyline points="100,50 65,50"></polyline>
+              <polyline points="35,35 65,35 65,65 35,65 35,35"></polyline>
+              <polyline points="0,80 20,80 35,65"></polyline>
+              <polyline points="50,100 50,65"></polyline>
+              <polyline points="65,65 80,80 100,80"></polyline>
+            </svg>
+          </div>
+          <svg class="contactless" role="img" viewBox="0 0 24 24" aria-label="Contactless">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <path d="M9.172 15.172a4 4 0 0 1 5.656 0"></path>
+            <path d="M6.343 12.343a8 8 0 0 1 11.314 0"></path>
+            <path d="M3.515 9.515c4.686 -4.687 12.284 -4.687 17 0"></path>
+          </svg>
+        </ion-card>
+      </div>
+      <ion-button expand="block" class="confirm-button" [disabled]="isAdding" routerLink="/add-card">
+        <ng-container *ngIf="!isAdding">
+          <ion-icon name="add-outline" slot="start"></ion-icon>
+          Add Card
+        </ng-container>
+
+        <ng-container *ngIf="isAdding">
+          <ion-icon name="timer-outline" slot="start"></ion-icon>
+          Adding...
+        </ng-container>
+      </ion-button>
+    </div>
+
+    <div class="cards-list" *ngIf="selectedSegment === 'virtual'">
+      <div *ngFor="let card of virtualCards" class="virtual-card-container">
+        <div class="virtual-card">
+          <h3 class="bank">{{ card.bank }}</h3>
+          <img [src]="card.chip" class="chip" />
+          <img [src]="card.indicator" class="indicator" />
+          <h3 class="number">{{ card.number }}</h3>
+          <h5 class="card-holder">
+            <span>card holder</span><br />
+            {{ card.holderName }}
+          </h5>
+          <h5 class="valid-date"><span>expiry date</span><br />{{ card.expiryDate }}</h5>
+          <img [src]="card.logo" class="logo" />
+        </div>
+      </div>
+      <ion-button expand="block" class="confirm-button" [disabled]="isAdding" [routerLink]="['/tabs','cards','add']" routerDirection="forward">
+        <ng-container *ngIf="!isAdding">
+          <ion-icon name="add-outline" slot="start"></ion-icon>
+          Add Card
+        </ng-container>
+
+        <ng-container *ngIf="isAdding">
+          <ion-icon name="timer-outline" slot="start"></ion-icon>
+          Adding...
+        </ng-container>
+      </ion-button>
+
+
+    </div>
+  </div>
+</ion-content>

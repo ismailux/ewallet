@@ -1,0 +1,103 @@
+<ion-content [fullscreen]="true">
+  <div class="header-container">
+  <ion-buttons slot="start" aria-hidden="true">
+    <ion-button>
+      <ion-icon slot="icon-only" name=""></ion-icon>
+    </ion-button>
+  </ion-buttons>
+
+  <h1>Receipt</h1>
+
+  <ion-buttons slot="end">
+    <ion-button>
+      <ion-icon slot="icon-only" src="assets/icons/share-outline.svg"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+</div>
+
+  <div class="main-content">
+    <div class="receipt-card">
+      <div class="success-icon">
+        <ion-icon src="assets/icons/success-checkmark.svg"></ion-icon>
+      </div>
+
+      <h2>Transfer Successful!</h2>
+      <p class="subtitle">Your money has been transferred successfully!</p>
+
+      <div class="details-container" *ngIf="transferDetails && recipient">
+        <div class="detail-row">
+          <span>No. Ref</span>
+          <strong>121112224455</strong>
+        </div>
+
+        <div class="detail-row">
+          <span>Transfer Amount</span>
+          <strong>{{ totalAmount | number:'1.2-2' }} {{ transferDetails.step1.currency}}</strong>
+        </div>
+
+        <div class="detail-row">
+          <span>Recipient</span>
+        </div>
+
+        <ion-item lines="none" class="recipient-item-card">
+          <ion-avatar slot="start">
+            <img [src]="recipient.avatar" />
+          </ion-avatar>
+          <ion-label>
+            <h2>{{ recipient.name }}</h2>
+            <p>{{ recipient.account }}</p>
+          </ion-label>
+        </ion-item>
+
+
+        <ion-accordion-group expand="inset">
+          <ion-accordion value="details">
+            <ion-item slot="header">
+              <ion-label>See Detail</ion-label>
+            </ion-item>
+            <div class="ion-padding" slot="content">
+
+              <div class="detail-row">
+                <span>Category</span>
+                <strong>{{ transferDetails.step2.category }}</strong>
+              </div>
+
+              <div class="detail-row">
+                <span>Date & Time</span>
+                <strong *ngIf="transferDetails.step4.scheduleType === 'now'" slot="end">
+                    {{ today | date:'d MMMM y, h:mm a' }}
+                  </strong>
+                <strong *ngIf="transferDetails.step4.scheduleType === 'date'" slot="end">
+                    {{ transferDetails.step4.scheduleDate | date:'d MMMM y' }}
+                  </strong>
+              </div>
+              
+              <div class="detail-row">
+                <span>Message</span>
+                <strong>{{ transferDetails.step3.note }}</strong>
+              </div>
+
+              <div class="detail-row">
+                <span>Amount</span>
+                <strong>{{ totalAmount | number:'1.2-2' }} {{ transferDetails.step1.currency}}</strong>
+              </div>
+
+              <div class="detail-row">
+                <span>Fee</span>
+                <strong>Free</strong>
+              </div>
+
+              <div class="detail-row">
+                <span>Total Amount</span>
+                <strong>{{ totalAmount | number:'1.2-2' }} {{ transferDetails.step1.currency}}</strong>
+              </div>
+            </div>
+
+          </ion-accordion>
+        </ion-accordion-group>
+      </div>
+
+    </div>
+    <ion-button expand="block" class="done-button" (click)="done()">Done</ion-button>
+  </div>
+</ion-content>

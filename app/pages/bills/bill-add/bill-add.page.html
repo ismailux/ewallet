@@ -1,0 +1,42 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Add Bill</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" [fullscreen]="true">
+  <ion-segment [(ngModel)]="category">
+    <ion-segment-button value="UTILITIES">Utilities</ion-segment-button>
+    <ion-segment-button value="TELECOM">Telecom</ion-segment-button>
+    <ion-segment-button value="ADMIN">Administrative</ion-segment-button>
+    <ion-segment-button value="EDU">Education</ion-segment-button>
+  </ion-segment>
+
+  <ion-list>
+    <ion-item>
+      <ion-label>Carrier</ion-label>
+      <ion-select placeholder="Select" [(ngModel)]="carrierId" (ionChange)="buildForm()">
+        <ion-select-option *ngFor="let c of carriers(category)" [value]="c.id">{{ c.name }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+
+  <form [formGroup]="form" *ngIf="form">
+    <ion-list>
+      <ion-item *ngFor="let f of fields">
+        <ion-label>{{ f.label }}</ion-label>
+        <ion-select *ngIf="f.type==='select'" formControlName="{{f.key}}">
+          <ion-select-option *ngFor="let o of f.options" [value]="o">{{o}}</ion-select-option>
+        </ion-select>
+        <ion-input *ngIf="f.type!=='select'" formControlName="{{f.key}}"
+          [type]="f.type==='number' ? 'number' : 'text'" />
+      </ion-item>
+      <ion-item>
+        <ion-label>Nickname (optional)</ion-label>
+        <ion-input formControlName="nickname" />
+      </ion-item>
+    </ion-list>
+
+    <ion-button expand="block" (click)="save()" [disabled]="form.invalid">Save</ion-button>
+  </form>
+</ion-content>

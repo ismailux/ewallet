@@ -1,0 +1,72 @@
+ion-content {
+  --padding-bottom: 100px; 
+}
+
+/* Warning Banner */
+.warning-card {
+--background: #fdecea;
+width: 100%;
+padding: 0;
+margin: 16px 0;
+ion-card-title {
+display: flex;
+align-items: center;
+gap: 8px;
+color: #a94442;
+}
+}
+
+/* Container for account details list */
+ion-list {
+background: #ffffff;
+border-radius: 12px;
+padding: 0;
+margin: 16px 0;
+width: 100%;
+box-sizing: border-box;
+--ion-item-background: transparent;
+}
+
+/* Style each detail row as separator */
+ion-list ion-item {
+--background: transparent;
+margin: 0;
+//padding: 16px;
+//--inner-padding-start: 16px;
+--inner-padding-end: 16px;
+height: auto;
+border-radius: 0;
+--border-width: 0 0 1px 0;
+--border-style: solid;
+--border-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Round only first & last item edges */
+
+ion-list ion-item:last-child {
+border-bottom-left-radius: 12px;
+border-bottom-right-radius: 12px;
+--border-width: 0;
+}
+
+/* Ensure ion-card matches same width as list */
+ion-card, ion-list {
+width: 100%;
+box-sizing: border-box;
+}
+
+/* Copy icon alignment */
+ion-item ion-icon {
+font-size: 1.2rem;
+color: #666;
+}
+
+ion-item h3 {
+font-size: 0.9rem;
+color: var(--ion-color-dark);
+}
+
+/* Button spacing */
+ion-button {
+margin-top: 24px;
+}

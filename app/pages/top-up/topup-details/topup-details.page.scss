@@ -1,0 +1,156 @@
+.mode-card--selected {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  border-radius: 12px;
+  background: var(--ion-color-dark-shade);
+  color: #fff;
+  margin-bottom: 1rem;
+
+  &__artwork {
+    width: 48px;
+    height: 32px;
+    margin-right: 1rem;
+  }
+
+  &__text {
+    flex: 1;
+    h2 { margin: 0; font-size: 1rem; }
+    p  { margin: .25rem 0 0; font-size: .875rem; opacity: .75; }
+  }
+
+  &__icon {
+    font-size: 1.2rem;
+    opacity: .6;
+  }
+}
+
+.amount-section {
+  margin-top: 24px;
+  //background: #e0e1e3;
+
+
+  .field-label {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #000;
+    margin-bottom: 4px;
+  }
+  .field-subtitle {
+    font-size: 0.75rem;
+    color: #b3b3b8;
+    margin-bottom: 12px;
+  }
+  .amount-display {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #000;
+    margin-bottom: 16px;
+  }
+
+  .amount-input-item {
+  --background: #f4f5f8;         
+
+  &::part(native) {
+    background-color: #f4f5f8 !important;
+  }
+
+  .currency-symbol {
+    color: #000;
+  }
+}
+
+ion-input {
+  --background:  #f4f5f8; ;
+  --highlight-color-focused: #222428;
+  color: #3b82f6;
+  --color: #fff;
+  --placeholder-color: #ddd;
+  --placeholder-opacity: 0.8;
+
+  --padding-bottom: 10px;
+  --padding-end: 10px;
+  --padding-start: 10px;
+  --padding-top: 10px;
+}
+
+
+  .quick-buttons {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 16px;
+
+    ion-button {
+      --background: rgba(78, 77, 77, 0.1);
+      --color: #fff;
+      border-radius: 20px;
+      padding: 6px 14px;
+      font-size: 0.9rem;
+    }
+    ion-button[fill="clear"] {
+      --background: rgba(255,255,255,0.1);
+    }
+  }
+
+  .filter-chips {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+
+    ion-chip {
+        --background: #f0eef2;
+        --color: var(--ion-color-medium);
+        font-weight: 500;
+        border-radius: 12px;
+    }
+
+    ion-chip.active {
+        --background: var(--ion-color-primary);
+        --color: white;
+    }
+}
+}
+
+
+/* src/app/pages/top-up/topup-details/topup-details.page.scss */
+
+/* Source selector styling */
+.source-selector {
+  --background: #cacccf;
+  border-color: #b3b3b8;
+  --border-radius: 12px;
+  --padding-start: 16px;
+  --padding-end: 16px;
+  --inner-padding-end: 0;
+  --color: #ffffff;
+
+  ion-avatar {
+    width: 40px;
+    height: 40px;
+    margin-right: 12px;
+  }
+
+  ion-label h2 {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #ffffff;
+  }
+  ion-label p {
+    margin: 0;
+    font-size: 0.85rem;
+    color: #080808;
+  }
+  ion-icon {
+    color: #8e8e93;
+    font-size: 1.2rem;
+  }
+}
+
+
+/* Continue button override for darker theme */
+ion-button[color="primary"] {
+  --background: #3b82f6;
+  --box-shadow: none;
+  color: #ffffff;
+}
+

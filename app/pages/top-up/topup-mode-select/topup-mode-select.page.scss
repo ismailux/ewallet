@@ -1,0 +1,119 @@
+/* src/app/pages/top-up/topup-mode-select/topup-mode-select.page.scss */
+
+/* Grid padding */
+.mode-grid {
+  padding: 1rem;
+  ion-row {
+    margin-bottom: 1rem;
+  }
+}
+
+/* Base card style */
+.mode-card {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform 150ms ease, box-shadow 150ms ease;
+
+  &:active {
+    transform: scale(0.98);
+  }
+  &:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  }
+
+  &__icon {
+    flex: 0 0 auto;
+    width: 64px;
+    height: 64px;
+    //background: rgba(255,255,255,0.2);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1rem;
+
+    ion-icon {
+      font-size: 64px;
+      color: #fff;
+    }
+  }
+
+  &__text {
+    flex: 1;
+    h2 {
+      margin: 0;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #fff;
+    }
+    p {
+      margin: 0.25rem 0 0;
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.85);
+    }
+  }
+}
+
+/* Dark card (with-card) */
+.mode-card--card {
+  background: #0e1e2d;
+}
+
+/* Blue card (bank-transfer) */
+.mode-card--bank {
+  background: linear-gradient(159deg, rgba(0,51,102,1) 0%, rgba(15,82,186,1) 100%);
+}
+
+/* Beige card (requesttransfer) */
+.mode-card--request {
+  background: #c8AD7E;
+}
+
+/* Add this at the bottom of your existing styles */
+
+.mode-card {
+  position: relative;   /* establish a positioning context */
+
+  /* keep your existing styles… */
+
+  /* now inject circles via ::before and ::after */
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.1); /* white at 10% opacity */
+    pointer-events: none;  /* let clicks pass through */
+  }
+
+  /* larger circle bottom‐right */
+  &::before {
+    width: 120px;
+    height: 120px;
+    bottom: -20px;
+    right: -20px;
+  }
+
+  /* smaller circle top‐left */
+  /*&::after {
+    width: 80px;
+    height: 80px;
+    top: -20px;
+    left: -20px;
+  }*/
+}
+
+/* If you want different colors per card variant, you can override just the pseudo‐elements: */
+.mode-card--card::before,
+.mode-card--card::after {
+  /* maybe lighter for dark background */
+  background-color: rgba(255, 255, 255, 0.08);
+}
+.mode-card--bank::before,
+.mode-card--bank::after {
+  /* white still works on green, or use a semitransparent dark */
+  background-color: rgba(255, 255, 255, 0.12);
+}

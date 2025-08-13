@@ -1,0 +1,81 @@
+<ion-header class="ion-no-border custom-header">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="#" (click)="goBack()"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Account Details</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <!-- Warning Banner -->
+  <ion-card class="warning-card">
+    <ion-card-header>
+      <ion-card-title>
+        <ion-icon [icon]="warningOutline"></ion-icon>
+        Avoid transfer rejection
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      You must include the 'Beneficiary' and 'Message for recipient' fields exactly as shown below.
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Details List -->
+  <ion-list>
+    <ion-item lines="none">
+      <ion-label>
+        <h3>Beneficiary</h3>
+        <p>{{ account.beneficiaryName }}</p>
+      </ion-label>
+      <ion-icon slot="end" [icon]="copyOutline" (click)="copy(account.beneficiaryName)"></ion-icon>
+    </ion-item>
+
+    <ion-item lines="none">
+      <ion-label>
+        <h3>IBAN</h3>
+        <p>{{ account.iban }}</p>
+      </ion-label>
+      <ion-icon slot="end" [icon]="copyOutline" (click)="copy(account.iban)"></ion-icon>
+    </ion-item>
+
+    <ion-item lines="none">
+      <ion-label>
+        <h3>BIC / SWIFT</h3>
+        <p>{{ account.bic }}</p>
+      </ion-label>
+      <ion-icon slot="end" [icon]="copyOutline" (click)="copy(account.bic!)"></ion-icon>
+    </ion-item>
+
+    <ion-item lines="none">
+      <ion-label>
+        <h3>Message for recipient (Reference)</h3>
+        <p>{{ account.messageForRecipient }}</p>
+      </ion-label>
+      <ion-icon slot="end" [icon]="copyOutline" (click)="copy(account.messageForRecipient)"></ion-icon>
+    </ion-item>
+
+    <ion-item lines="none">
+      <ion-label>
+        <h3>Bank Name & Address</h3>
+        <p>
+          {{ account.bankName }}<br />
+          {{ account.bankAddress }}
+        </p>
+      </ion-label>
+      <ion-icon slot="end" [icon]="copyOutline"
+        (click)="copy(account.bankName + ', ' + account.bankAddress)"></ion-icon>
+    </ion-item>
+
+    <ion-item lines="none">
+      <ion-label>
+        <h3>Beneficiary Address</h3>
+        <p>{{ account.beneficiaryAddress }}</p>
+      </ion-label>
+      <ion-icon slot="end" [icon]="copyOutline" (click)="copy(account.beneficiaryAddress)"></ion-icon>
+    </ion-item>
+  </ion-list>
+
+  <ion-button expand="block" (click)="shareDetails()">Share details</ion-button>
+</ion-content>

@@ -1,0 +1,160 @@
+// --- Styles généraux ---
+ion-content {
+  --background: var(--ion-color-dark-purple, #1C0045);
+}
+.main-content {
+  background: #f5f5f7;
+  height: 100%;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+  padding: 24px;
+}
+.header-container {
+  padding: calc(env(safe-area-inset-top, 0px) + 10px) 16px 16px 16px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  h1 { font-size: 1.2rem; font-weight: 600; }
+  ion-button { --color: white; font-size: 24px; }
+  ion-buttons[aria-hidden="true"] ion-button {
+    visibility: hidden;
+  }
+}
+
+// --- Styles de la carte de reçu ---
+.receipt-card {
+  text-align: center;
+}
+.success-icon {
+  margin: 16px auto;
+  width: 100px;
+  height: 100px;
+  background-color: #addfad;
+  background-image: linear-gradient(315deg, #addfad 0%, #74d680 74%);
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  ion-icon { width: 80%; height: 80%; }
+}
+
+h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-top: 24px;
+  margin-bottom: 8px;
+  color: var(--ion-color-dark); 
+}
+
+.subtitle {
+  color: var(--ion-color-medium);
+  margin: 0 auto 32px auto; 
+  max-width: 250px;
+}
+
+.details-container {
+  background-color: white;
+  border-radius: 16px;
+  margin-top: 32px;
+  text-align: left;
+  padding: 16px;
+  margin-bottom: 32px; 
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1rem;
+  color: var(--ion-color-medium);
+  padding: 0 20px;
+  margin-bottom: 16px;
+  strong {
+    color: var(--ion-color-dark);
+    font-size: 0.9rem;
+    text-align: right;
+  }
+}
+
+.recipient-item-card  {
+  --padding-start: 12px;
+  --inner-padding-end: 0;
+  --background: white;
+  margin: 0 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+  border-style: solid;
+  border-color: rgb(163, 163, 163);
+  border-width: 1px;
+  border-radius: 16px;
+  --min-height: auto;
+  
+  padding-top: 0px;
+  padding-bottom: 0px;
+
+  ion-avatar {
+    width: 36px;
+    height: 36px;
+  }
+
+  ion-label {
+    margin-left: 12px;
+    margin-bottom: 0;
+    margin-top: -0;
+    h2 {
+      font-weight: 600;
+      font-size: 0.8rem;
+      color: #000000;
+    }
+    p {
+      font-size: 0.8rem;
+      color: var(--ion-color-medium);
+    }
+  }
+}
+
+
+ion-accordion {
+  --background: white;
+  
+  ion-item[slot="header"] {
+    --background: white; 
+    --padding-start: 20px;
+    --inner-padding-end: 20px;
+    
+    ion-label {
+      color: var(--ion-color-dark);
+      font-weight: 600;
+    }
+  }
+
+  &::part(toggle-icon) {
+    color: var(--ion-color-dark);
+  }
+ 
+  .ion-padding[slot="content"] {
+    padding-top: 0;
+    .detail-row {
+      padding: 4px 2px; 
+      margin: 2px;
+      font-size: 0.9rem;
+    }
+  }
+}
+
+
+.done-button {
+  --background: var(--ion-color-primary);
+  --color: white;
+  --border-radius: 25px;
+  --padding-top: 16px;
+  --padding-bottom: 16px;
+  font-size: 18px;
+  font-weight: 600;
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
+}

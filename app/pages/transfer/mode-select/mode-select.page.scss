@@ -1,0 +1,80 @@
+.custom-header {
+    color: var(--ion-color-dark);
+    padding-bottom: 16px;
+
+}
+
+// On rend la barre d'outils à l'intérieur transparente
+.custom-header ion-toolbar {
+    --background: #f4f5f8;
+    --color: var(--ion-color-dark);
+}
+
+// Style du titre et des boutons
+.custom-header ion-title {
+    text-align: center;
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+
+.custom-header ion-button,
+.custom-header ion-back-button {
+    --color: var(--ion-color-dark);
+    font-size: 24px;
+}
+
+.step-text {
+    color: var(--ion-color-medium);
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+
+.mode-card {
+    /* keep your base card styles (shadow, padding, hover) */
+    --background: #fff;
+
+    h3,
+    ion-card-title {
+        color: var(--ion-color-dark);
+        margin: 0;
+        font-size: 1.2rem;
+        font-weight: 600;
+    }
+
+    ion-card-subtitle {
+        font-size: 0.9rem;
+        color: var(--ion-color-medium);
+        margin-top: 4px;
+    }
+}
+
+/* position the graphic at the top-right of the card */
+.mode-graphic {
+    display: flex;
+    justify-content: flex-end;
+
+    img {
+        width: 80px;
+        height: auto;
+    }
+}
+
+/* selected state, gutter, etc. remain the same */
+.mode-container ion-col+ion-col {
+    margin-left: 8px;
+}
+
+.mode-container {
+    ion-row {
+        justify-content: center;
+    }
+}
+
+.mode-card.selected {
+    border: 2px solid var(--ion-color-primary);
+}
+
+ion-card {
+    border-top: 3px solid var(--ion-color-primary)
+}

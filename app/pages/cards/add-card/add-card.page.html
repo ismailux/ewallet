@@ -1,0 +1,113 @@
+  <ion-header class="ion-no-border custom-header">
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-back-button defaultHref="/tabs/cards"></ion-back-button>
+      </ion-buttons>
+      <ion-title>Add Card</ion-title>
+      <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon slot="icon-only" name="ellipsis-vertical"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content fullscreen>
+    <ion-grid>
+
+      <!-- Live Preview via your new component -->
+      <ion-row class="animate__animated animate__fadeInTopLeft animate__faster ion-justify-content-center ion-text-center">
+        <ion-col size="12" class="ion-text-center">
+          <app-debit-card
+            [type]="v.type"
+            [colorKey]="v.colorKey"
+            [description]="v.description"
+            [number]="v.number"
+            [expiry]="v.expiry"
+            [secret]="v.secret"
+          ></app-debit-card>
+        </ion-col>
+      </ion-row>
+
+      <!-- The rest of your form… -->
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <!-- Card Type & Color selectors -->
+        <ion-row class="ion-padding-top">
+          <ion-col size="6">
+            <ion-item lines="full" class="form-item">
+              <ion-label position="floating">Card Type</ion-label>
+              <ion-select formControlName="type">
+                <ion-select-option *ngFor="let t of cards.cardTypes" [value]="t">
+                  {{ t.toUpperCase() }}
+                </ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+
+          <ion-col size="6">
+            <ion-item lines="full" class="form-item">
+              <ion-label position="floating">Card Color</ion-label>
+              <ion-select formControlName="colorKey" cssClass="my-select-alert">
+                <ion-select-option *ngFor="let c of cards.cardColors" [value]="c">
+                  {{ c.toUpperCase() }}
+                </ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+        <!-- Name & Balance -->
+        <ion-row>
+          <ion-col size="6">
+            <ion-item lines="full" class="form-item">
+              <ion-label position="floating">Card Name</ion-label>
+              <ion-input formControlName="description"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col size="6">
+            <ion-item lines="full"  class="form-item">
+              <ion-label position="floating">Starting Balance</ion-label>
+              <ion-input type="number" formControlName="balance"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+        <!-- Number -->
+        <ion-row>
+          <ion-col size="12">
+            <ion-item lines="full" class="form-item">
+              <ion-label position="floating">Card Number</ion-label>
+              <ion-input formControlName="number"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+        <!-- Expiry & CVV -->
+        <ion-row>
+          <ion-col size="6">
+            <ion-item lines="full" class="form-item">
+              <ion-label position="floating">Card Expiry</ion-label>
+              <ion-input formControlName="expiry"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col size="6">
+            <ion-item lines="full" class="form-item">
+              <ion-label position="floating">Card Secret</ion-label>
+              <ion-input formControlName="secret"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+        <!-- Submit -->
+        <ion-row>
+          <ion-col size="12">
+            <ion-button expand="block" type="submit" [disabled]="adding">
+              <ion-icon slot="start" [name]="adding ? 'timer-outline' : 'add-outline'"></ion-icon>
+              {{ adding ? 'Adding…' : 'Add Card' }}
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </form>
+
+    </ion-grid>
+  </ion-content>
